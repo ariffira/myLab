@@ -1,0 +1,1 @@
+ALTER TABLE `ia24at_reservations` ADD `wait` INT(20) NOT NULL , ADD `wait_status` INT(20) NOT NULL ;

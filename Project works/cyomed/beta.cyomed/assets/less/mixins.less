@@ -1,0 +1,50 @@
+
+//
+// General Attr with px unit, ie. padding / margin / etc.
+// --------------------------------------------------
+
+.generate-attr(@class-name; @attrs; @n; @i: 0; @unit: 1px; @misc-mixins: false) when (@i =< @n) {
+
+  .@{class-name}-@{i} {
+
+    .iterate-attrs(@t: length(@attrs)) when (@t > 0) {
+      @attr: extract(@attrs, @t);
+
+      @{attr}: (@unit * @i) !important;
+
+      .iterate-attrs((@t - 1));
+    } .iterate-attrs;
+
+    .c-misc(@misc-mixins: false) when not (@misc-mixins = false) {
+      @misc-mixins();
+    } .c-misc(@misc-mixins);
+
+  }
+
+  .generate-attr(@class-name; @attrs; @n; (@i + 1); @unit; @misc-mixins);
+}
+
+//
+// Typography colors
+// --------------------------------------------------
+
+.generate-colors(@prefices; @attrs; @colors) when (length(@prefices) = length(@attrs)) {
+
+  .interate-colors(@i: length(@colors)) when (@i > 0) {
+    @name: e(extract(@colors, @i));
+
+    .iterate-attrs(@t: length(@prefices)) when (@t > 0) {
+      @prefix: e(extract(@prefices, @t));
+      @attr: extract(@attrs, @t);
+
+      .@{prefix}-color-@{name} {
+        @{attr}: @@name !important;
+      }
+
+      .iterate-attrs((@t - 1));
+    } .iterate-attrs;
+
+    .interate-colors((@i - 1));
+  } .interate-colors;
+
+}
