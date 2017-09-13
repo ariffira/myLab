@@ -1,0 +1,639 @@
+   html, body {
+       margin:0;
+       padding:0;
+       font:normal 12px Arial;
+
+   }
+   textarea {
+       resize:none;
+   }
+   video {
+       width: auto !important;
+       height: 100% !important;
+       margin-left:auto;
+       margin-right:auto;
+   }
+
+.inside_room_header {
+  width: 100%;
+  height: 60px;
+  background: #242424;
+  margin: 0 auto;
+}
+
+.wrap_header {
+width: 50%;
+margin: 0 auto;
+padding-top: 0px;
+float: left;
+}
+
+.wrap_header #header_logo {
+  width: 0%;
+  height: 37px;
+  background: url('') no-repeat;
+  background-size:contain;
+  float: left;
+  margin-top: 10px;
+}
+
+.wrap_header #header_content {
+  /*width: 310px;*/
+  width: 50%;
+  float: left;
+  padding: 10px;
+  margin-left: 20px;
+  color: white; 
+  text-shadow: 1px 1px 1px #000;
+  white-space: nowrap;
+  font-weight: 500; 
+  font-style: normal;
+  font-size: 20px;
+}
+
+
+   .callContainer {
+       margin-left: auto;
+       margin-right: auto;
+       overflow: hidden;
+       height: 540px;
+       position:fixed;
+       background-color:#333333;
+       float: right;
+       width: 100%;
+       -webkit-touch-callout: none;
+       -webkit-user-select: none;
+       -khtml-user-select: none;
+       -moz-user-select: none;
+       -ms-user-select: none;
+       user-select: none;
+   }
+
+   .videoWinContainer {
+       height: 540px;
+       position: fixed;
+       width: 100%;
+       overflow:hidden;
+   }
+
+  .two_wayRemoteVideosContainer {
+     position: absolute;
+     right: 0; 
+     bottom: 0; 
+     width: 170px; 
+     height: 180px;
+   }
+
+  .two_wayRemoteVideosContainer .videoContainer {
+       
+       position:relative; 
+       margin-left: auto;
+       margin-right: auto;
+       overflow: hidden;
+       width: 150px;
+       height: 150px;
+       display:inline-block;
+       box-sizing: border-box;
+       border: 2px solid white;
+       border-radius: 5px;
+       background-image:url('/videochat/img/avatar.png') !important;
+       background-repeat:no-repeat !important;
+       background-position:center !important;
+       background-color:black !important;
+       background-size:auto 100% !important;
+       font-size: 150%;
+   }
+
+  .two_wayMainVideoContainer {
+       width: 100%;
+       height: 100%;
+       font-size: 250%;
+   }
+
+  .in_call {
+       background-image:url('/videochat/img/avatar.png') !important;
+       background-repeat:no-repeat !important;
+       background-position:center !important;
+       background-color:black !important;
+       background-size:auto 100% !important;
+   }
+
+  .three_wayRemoteVideosContainer {
+       width: 100%;
+       height: 100%;
+   }
+     
+  .three_wayRemoteVideosContainer .videoContainer {
+       position: absolute;
+       right:0;
+       bottom:0;
+       margin-left: auto;
+       margin-right: auto;
+       width: 50%;
+       height: 50%;
+       background-color:black;
+       overflow:hidden;
+       background-image:url('/videochat/img/avatar.png') !important;
+       background-repeat:no-repeat !important;
+       background-position:center !important;
+       background-color:black !important;
+       background-size:auto 100% !important;
+       box-sizing: border-box;
+       border:1px solid #fff;
+       font-size: 200%;
+
+   }
+   .three_wayRemoteVideosContainer video {
+       width: auto !important;
+       height: 50% !important;
+   }
+
+  .three_wayMainVideoContainer {
+       width: 50%; 
+       height: 100%;
+       background-image:url('/videochat/img/avatar.png') !important;
+       background-repeat:no-repeat !important;
+       background-position:center !important;
+       background-color:black !important;
+       background-size:auto 100% !important;  
+       overflow:hidden;
+       font-size: 200%;
+       position:absolute;
+       box-sizing: border-box;
+       border:1px solid #fff;
+   }
+  
+  .four_wayRemoteVideosContainer {
+       width: 100%;
+       height: 100%;
+   }
+   
+  .four_wayRemoteVideosContainer .videoContainer {
+       position: absolute;
+       bottom:0;
+       margin-left: auto;
+       margin-right: auto;
+       width: 50%;
+       height: 50%;
+       overflow:hidden;
+       background-image:url('/videochat/img/avatar.png') !important;
+       background-repeat:no-repeat !important;
+       background-position:center !important;
+       background-color:black !important;
+       background-size:auto 100% !important;
+       pointer-events: none;
+       box-sizing: border-box;
+       border:1px solid #fff;
+       font-size: 200%;
+   }
+
+  .four_wayMainVideoContainer {
+       width: 50%;
+       height: 50%;
+       overflow:hidden;
+       background-image:url('/videochat/img/avatar.png') !important;
+       background-repeat:no-repeat !important;
+       background-position:center !important;
+       background-color:black !important;
+       background-size:auto 100% !important;
+       position:absolute;
+       overflow:hidden;
+       font-size: 200%;
+       box-sizing: border-box;
+       border:1px solid #fff;
+   }
+
+  
+  .five_wayRemoteVideosContainer {
+     position: absolute;
+     right: 2%; 
+     top: 1%; 
+     width: 180px; 
+     overflow-y: auto;      
+     height: 95%;
+   }
+
+  .five_wayRemoteVideosContainer .videoContainer {
+       margin-left: auto;
+       margin-right: auto;
+       overflow: hidden;
+       width: 150px;
+       height: 150px;
+       position:relative;
+       border:4px solid #fff;
+       border-radius:10px;
+       display:inline-block;
+       box-shadow: 1px 1px 2px #000;
+       background-image:url('/videochat/img/avatar.png') !important;
+       background-repeat:no-repeat !important;
+       background-position:center !important;
+       background-color:black !important;
+       background-size:auto 100% !important;
+       font-size: 150%;
+   }
+
+  .five_wayMainVideoContainer {
+       width: 100%;
+       height: 100%;
+       background-image:url('/videochat/img/avatar.png') !important;
+       background-repeat:no-repeat !important;
+       background-position:center !important;
+       background-color:black !important;
+       background-size:auto 100% !important;
+       font-size: 250%;
+   }
+
+.main_control_bar {
+    float: right;
+    width: 100%;
+    height: 47px;
+    /*background-color: #eaeaea;*/
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    bottom: 0;  
+    position: absolute; 
+    pointer-events:all;
+}
+
+.remote_control_bar{
+    height: 35px;
+    width:50px;
+    text-align: center;
+    top: 0;
+    position: absolute;
+    pointer-events: all;
+    overflow:hidden;
+}
+
+.remote_control_bar .cam {
+    width: 40px;
+    height: 49px;
+    background: url("/videochat/img/WebRTC-Icon.png");
+    background-position: -160px -645px;
+}
+
+.remote_control_bar .cam_stopped {
+    width: 40px;
+    height: 49px;
+    background: url("/videochat/img/WebRTC-Icon.png");
+    background-position: -84px -645px;
+}
+
+
+.icon {
+cursor: pointer;
+}
+
+.mic {
+    width: 47px;
+    height: 49px;
+    background: url("/videochat/img/WebRTC-Icon.png");
+    background-position: -11px -274px;
+}
+
+.mic_muted {
+    width: 47px;
+    height: 49px;
+    background: url("/videochat/img/WebRTC-Icon.png");
+    background-position: -69px -274px;
+}
+
+.spk {
+    width: 53px;
+    height: 49px;
+    background: url("/videochat/img/WebRTC-Icon.png");
+    background-position: -12px -332px;
+}
+.spk_muted {
+    width: 53px;
+    height: 49px;
+    background: url("/videochat/img/WebRTC-Icon.png");
+    background-position: -82px -332px;
+}
+
+.cam {
+    width: 53px;
+    height: 49px;
+    background: url("/videochat/img/WebRTC-Icon.png");
+    background-position: -16px -386px;
+}
+.cam_stopped {
+    width: 53px;
+    height: 49px;
+    background: url("/videochat/img/WebRTC-Icon.png");
+    background-position: -82px -386px;
+}
+
+.filter {
+    width: 53px;
+    height: 49px;
+    background: url("/videochat/img/WebRTC-Icon.png");
+    background-position:-74px -70px;
+}
+
+.disconnect {
+    width:56px;
+    height:49px;
+    background: url("/videochat/img/WebRTC-Icon.png");
+    background-position:-12px -439px;
+}
+
+.disconnect_disabled {
+    width:56px;
+    height:49px;
+    background: url("/videochat/img/WebRTC-Icon.png");
+    background-position:-73px -439px;
+    pointer-events:none;
+}
+.disabled {
+    pointer-events:none;
+    cursor:default;
+}
+.left10 {
+    float: left;
+    margin-right: 10px;
+}
+
+.left100 {
+    float: left;
+    width: 100px;
+    margin-left: 203px;
+}
+
+.left200 {
+    float: left;
+    width: 200px;
+    margin-left: 325px;
+}
+
+.displayname {
+  position: absolute;
+  top: 5px; 
+  left:10%;
+  width: 80%; 
+  height:50px;
+  text-align: center; 
+  overflow:hidden;
+  font-weight: 500; 
+  font-style: normal; 
+  font-family: 'Gotham Rounded A', 'Gotham Rounded B', sans-serif;  
+  color: white; 
+  text-shadow: 1px 1px 1px #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -moz-binding: url('assets/xml/ellipsis.xml#ellipsis');
+  cursor:default;
+  -moz-user-select: none;
+}
+
+.two_wayRemoteVideosContainer .displayname {
+  position: absolute;
+  top: 5px; 
+  width: 70px; 
+  left:38px;
+  height:50px;
+  text-align: center; 
+  overflow:hidden;
+  font-weight: 500; 
+  font-style: normal; 
+  font-family: 'Gotham Rounded A', 'Gotham Rounded B', sans-serif;  
+  color: white; 
+  text-shadow: 1px 1px 1px #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -moz-binding: url('assets/xml/ellipsis.xml#ellipsis');
+  cursor:default;
+}
+
+.five_wayRemoteVideosContainer .displayname {
+  position: absolute;
+  top: 5px; 
+  width: 70px; 
+  left:38px;
+  height:50px;
+  text-align: center; 
+  overflow:hidden;
+  font-weight: 500; 
+  font-style: normal; 
+  font-family: 'Gotham Rounded A', 'Gotham Rounded B', sans-serif;  
+  color: white; 
+  text-shadow: 1px 1px 1px #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -moz-binding: url('assets/xml/ellipsis.xml#ellipsis');
+  cursor:default;
+}
+
+.filters_container {
+   display:none;
+   left: 200px;
+   bottom: 43px;
+   width: 70px; 
+   background-color: rgba(0, 0, 0, 0.5); 
+   text-align: center; 
+   position: absolute; 
+   pointer-events: all;
+}
+.filters_container div {
+    border-bottom-width: 1px; 
+    border-bottom-color: gray; 
+    border-bottom-style: solid; 
+    cursor: pointer; 
+    font-family: 'Gotham Rounded A', 'Gotham Rounded B', sans-serif;  
+    color: white; 
+    text-shadow: 1px 1px 1px #000;
+    line-height:20px;
+}
+
+.filters_container div:hover{
+  background-color: #eaeaea;
+}
+
+.filter-grayscale {
+    -webkit-filter: grayscale(1);
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+}
+.filter-saturate {
+    -webkit-filter: saturate(5);
+    filter:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' ><filter id='saturate150'><feColorMatrix in='SourceGraphic' type='matrix' values='5 -1 -1 0 0 -1 5 -1 0 0 -1 -1 5 0 0 0 0 0 1 0' /></filter></svg>#saturate150");
+   
+}
+.filter-sepia {
+    -webkit-filter: sepia(1);
+    filter:url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' ><filter id=\'sepia\'><feColorMatrix type=\'matrix\' values=\'.393 .769 .189 0 0 .349 .686 .168 0 0 .272 .534 .181 0 0 0 0 0 1 0\' /></filter></svg>#sepia")
+}
+.filter-invert {
+    -webkit-filter: invert(1);
+    filter:url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' ><filter id=\'invert\'><feComponentTransfer><feFuncR type=\'linear\' slope=\'-1\' intercept=\'1\'/><feFuncG type=\'linear\' slope=\'-1\' intercept=\'1\' /><feFuncB type=\'linear\' slope=\'-1\' intercept=\'1\' /></feComponentTransfer></filter></svg>#invert");
+}
+
+.popup_background {
+  background-color: #000;
+  opacity: 0.5;
+  position: absolute; 
+  width: 100%; 
+  height: 100%; 
+  top: 0; 
+  left: 0; 
+  filter: alpha(opacity=75);
+  z-index: 1;
+}
+
+.popup_allow_access {
+    background-image: url('/videochat/img/allow-02.png');
+    background-repeat:no-repeat;
+    background-position:center;
+    width: 339px;
+    height: 155px;
+    display: block;
+    z-index: 2;
+    position: absolute;
+    top: 85px;
+    left: 38px;
+}
+
+.firefox {
+    background-image: url('/videochat/img/allow-03.png') !important;
+    height:182px !important;
+}
+
+.popup_access_denied {
+    background-image: url('/videochat/img/allow-01.png');
+    background-repeat:no-repeat;
+    background-position:center;
+    width: 339px;
+    height: 155px;
+    display: block;
+    z-index: 2;
+    position: absolute;
+    top: 85px;
+    left: 38px;
+}
+
+.popup_form {
+    background-color: white;
+    display:none;
+    z-index: 2; 
+    position: absolute; 
+    top: 135px; 
+    left: 274px;
+    width: 410px;
+    height:220px;
+    margin: 0 auto;
+    color: #4d4d4d;
+    font-family:Lucida Sans, Lucida Grande, Helvetica, Arial, san-serif;
+    font-size: 15px;
+    box-shadow: 0 0 5px #4d3109;
+    border: 1px solid #dedede;
+    border-top: 1px solid #9f9f9f;
+    border-radius: 5px;
+}
+    .popup_form h2 {
+    padding: 10px 0 0 0;
+    margin: 0;
+    text-align: center;
+    color: #242424;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 70px;
+    }
+
+    .popup_form input {
+    width: 285px;
+    padding: 11px 10px;
+    color: #4d4d4d;
+    border: 1px solid #dedede;
+    border-top: 1px solid #9f9f9f;
+    border-radius: 5px;
+    outline: none;
+    margin: 0 0 0 50px;
+    font-size: 15px;
+    }
+
+.popup_form input[type="button"] {
+    width: 147px !important;
+    height: 50px !important;
+    padding: 0 !important;
+    line-height: 50px;
+    background-color: #faa51c;
+    margin: 0 0 10px 129px !important;
+    text-align: center;
+    color: #fff !important;
+    cursor: pointer;
+    box-shadow: 0 0 5px #4d3109;
+    font-size: 18px !important;
+    font-weight: bold;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+    .popup_form input[type="button"]:hover {
+    background-color: #de8c07;
+    }
+
+    .popup_close {
+        top: 0;
+        margin-right: 6px;
+        float: right;
+        width: 20px;
+        height: 30px;
+        background: url('/videochat/img/WebRTC-Icon.png');
+        background-position: -158px -688px;
+    }
+    .popup_close:hover {
+            margin-right:3px;
+            background-position: -179px -688px;
+            cursor:pointer;
+    }
+    .popup_error {
+        color: #D8000C;
+        font-size: 13px;
+        margin-left: 12px;
+    }
+.popup_browser_not_supported {
+    background-image: url('/videochat/img/no-browser-support-orange.png'); 
+    width: 92px; 
+    height: 72px; 
+    float:left;
+}
+
+   input[type="button"] {border:1px solid #000;background:#fff;outline:none;cursor:pointer;height:23px;line-height:23px;padding:0 3px 0 3px;border-left-color:#888;border-top-color:#888}
+   input[type="button"]:active {border:1px solid #3333ff}
+   input[type="button"][disabled] {border:1px solid #888;background:#ddd;cursor:default}
+
+   
+    
+ .popup_form_mobile {
+    background-color: white;
+    display:none;
+    z-index: 2; 
+    position: absolute; 
+    top: 0; 
+    left: 0;
+    width: 410px;
+    height:220px;
+    margin: 0 auto;
+    color: #4d4d4d;
+    font-family:Lucida Sans, Lucida Grande, Helvetica, Arial, san-serif;
+    font-size: 12px;
+    box-shadow: 0 0 5px #4d3109;
+    border: 1px solid #dedede;
+    border-top: 1px solid #9f9f9f;
+    border-radius: 5px;
+}
+    .popup_form_mobile h2 {
+    padding: 10px 0 0 0;
+    margin: 0;
+    text-align: left;
+    color: #242424;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 70px;
+    }
+

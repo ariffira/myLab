@@ -1,0 +1,9 @@
+dependencies {
+      compile project(':database')
+      compile 'org.apache.spark:spark-core_2.11:1.5.2' 
+      compile 'org.apache.spark:spark-streaming_2.11:1.5.2'  
+      compile 'org.apache.spark:spark-sql_2.11:1.5.2'
+      compile 'org.apache.spark:spark-mllib_2.11:1.5.2'
+      compile 'org.apache.spark:spark-ml_2.11:1.5.2'
+      compile 'org.apache.spark:spark-streaming-twitter_2.10:1.5.2'
+   }

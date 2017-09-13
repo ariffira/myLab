@@ -1,0 +1,14 @@
+{
+    "studyList": [
+        {
+            "patientName" : "MISTER^MR",
+            "patientId" : "832040",
+            "studyDate" : "20010108",
+            "modality" : "MR",
+            "studyDescription" :"BRAIN SELLA",
+            "numImages" : 17,
+            "studyId" : "mrstudy"
+        }
+        
+    ]
+}
