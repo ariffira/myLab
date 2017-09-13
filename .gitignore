@@ -38,7 +38,3 @@ desktop.ini
 # Logs #
 ######################
 *.log
-
-# Editor files #
-################
-Node\ tutorial/.idea
