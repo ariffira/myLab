@@ -14,7 +14,7 @@ function onRequest(request, response) {
     if(request.method == 'GET' && request.url == '/'){
         console.log("User made a request to the server" + request.url);
         response.writeHead(200, {"Context-type":"text/html"});
-        fs.createReadStream("./simpleServer.html").pipe(response);
+        fs.createReadStream("./asset/simpleServer.html").pipe(response);
     }else {
         send404Response(response);
     }

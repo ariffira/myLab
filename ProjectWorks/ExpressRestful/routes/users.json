@@ -1,0 +1,20 @@
+{
+  "user1" : {
+    "name" : "Arif",
+    "age" : "29",
+    "profession" : "student",
+    "id": 1
+  },
+  "user2" : {
+    "name" : "shoma",
+    "age" : "25",
+    "profession" : "student",
+    "id": 2
+  },
+  "user3" : {
+    "name" : "shumi",
+    "age" : "38",
+    "profession" : "houswife",
+    "id": 3
+  }
+}
