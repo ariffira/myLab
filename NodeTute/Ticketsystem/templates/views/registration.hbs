@@ -1,0 +1,47 @@
+<div class="container">
+	<h1>Create a new account</h1>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8 col-md-6">
+			{{#if registrationSubmitted}}
+			<h3>Thanks for getting in touch.</h3>
+			{{else}}
+			<form method="post">
+				<input type="hidden" name="action" value="registration.create">
+				<div class="form-group {{#if validationErrors.name}}has-error{{/if}}">
+					<label>First Name</label>
+					<input type="text" name="name.first"  class="form-control" value="{{formData.name.first}}">
+				</div>
+			    <div class="form-group {{#if validationErrors.name}}has-error{{/if}}">
+					<label>Last Name</label>
+					<input type="text" name="name.last"  class="form-control" value="{{formData.name.last}}">
+				</div>
+				<div class="form-group {{#if validationErrors.email}}has-error{{/if}}">
+					<label>Email</label>
+					<input type="email" name="email" class="form-control" value="{{formData.email}}">
+				</div>
+				<div class="form-group {{#if validationErrors.password}}has-error{{/if}}">
+					<label>Password</label>
+					<input type="password" name="password" class="form-control" value="{{formData.password}}">
+				</div>
+				<div class="form-group {{#if validationErrors.password}}has-error{{/if}}">
+					<label>Password confirm</label>
+					<input type="password" name="password_confirm" class="form-control" value="{{formData.password_confirm}}">
+				</div>								
+				<div class="form-group">
+					<label>Phone</label>
+					<input type="text" name="phone" placeholder="(optional)" class="form-control" value="{{formData.phone}}">
+				</div>
+				<div class="form-group">
+					<label>Institution/University</label>
+					<input type="text" name="institution" placeholder="(e.g. Uni Duisburg)" class="form-control" value="{{formData.institution}}">
+				</div>
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary">Sign-Up</button>
+				</div>
+			</form>
+			{{/if}}
+		</div>
+	</div>
+</div>

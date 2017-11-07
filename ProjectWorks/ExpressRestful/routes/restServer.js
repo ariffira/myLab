@@ -31,6 +31,7 @@ app.post('/addUser', function (req, res) {
     });
 })
 
+//creating restful api to find id details
 app.get('/:id', function (req, res) {
     // First read existing users.
     fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {

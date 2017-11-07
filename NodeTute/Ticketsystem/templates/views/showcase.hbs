@@ -1,0 +1,17 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+			<article>
+				<p><a href="/showcase">&larr; back to the showcase</a></p>
+				<hr>
+				<header>
+					<h1>{{data.showcase.title}}</h1>
+				</header>
+				<div class="post">
+					{{#if data.showcase.image}}<img src="{{{cloudinaryUrl data.post.image width=750 height=450 crop='fit' }}}" class="img-responsive">{{/if}}
+					{{{data.showcase.content.extended}}}
+				</div>
+			</article>
+		</div>
+	</div>
+</div>
