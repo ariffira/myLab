@@ -1,0 +1,30 @@
+@media screen {
+  h1 {
+    color: red;
+  }
+}
+@media (max-width: 512px) {
+  h1 {
+    color: yellow;
+  }
+}
+@media screen {
+  .myclass {
+    coloe: blue;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .myclass {
+    color: green;
+  }
+}
+@media screen and (max-width: 512px) {
+  .myclass {
+    color: pink;
+  }
+}
+@media mytext {
+  .myclass {
+    color: red;
+  }
+}

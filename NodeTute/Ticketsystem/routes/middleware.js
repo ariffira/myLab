@@ -13,7 +13,7 @@ exports.initLocals = function (req, res, next) {
 		{ label: 'Showcase', key: 'showcase', href: '/showcase' },
 		{ label: 'Registration', key: 'registration', href: '/registration' },
 		{ label: 'Sirtrevor Test', key: 'sirtrevor', href: '/sirtrevor' },
-		
+		{ label: 'Sign-in as Teacher', key: 'teachersignin', href: '/teachersignin' },
 	];
 	res.locals.user = req.user;
 	next();

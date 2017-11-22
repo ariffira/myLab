@@ -19,11 +19,12 @@ exports = module.exports = function (app) {
 	app.get('/blog/post/:post', routes.views.post);
 	app.get('/gallery', routes.views.gallery);
 	app.all('/contact', routes.views.contact);
-	app.get('/tickets/:ticketslug', function(req, res){
+	app.get('/tickets/:ticketslug', function (req, res) {
 		res.send('A ticket which has a slug:', req.param.ticketslug);
 	});
-	app.all('/registration', routes.views.registration);
+	app.all('/registration', routes.views.session.registration);
 	app.get('/sirtrevor', routes.views.sirtrevor);
 	app.get('/showcase', routes.views.showcase);
-	
+	app.get('/teachersignin', routes.views.session.teachersignin);
+
 };

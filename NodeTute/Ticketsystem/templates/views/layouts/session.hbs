@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ePBL sign-in</title>
+	<link href="/styles/site.min.css" rel="stylesheet">
+	
+	{{!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    //- Safely remove this block if you are not targeting IE8 --}}
+	<!--[if lt IE 9]>
+	<script src="//cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.js"></script>
+	<script src="//cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+
+<div class="container">
+	<div id="header">
+		<p>Project Based Learning 
+			<a href="/" target="_blank">
+			<img src="/images/logo-email.gif" alt="pbl system">
+			</a>
+		</p>
+	</div>
+</div>
+<div class="container">
+<div id="body">
+	<!--
+        Flash messages allow you to display once-off status messages to users, e.g. form
+        validation errors, success messages, etc
+    -->
+	{{#if messages}}
+		<div id="flash-messages" class="container">
+			{{#if messages.info}}
+				<div class="alert alert-info">
+					{{{flashMessages messages.info}}}
+				</div>
+			{{/if}}
+			{{#if messages.success}}
+				<div class="alert alert-success">
+					{{{flashMessages messages.success}}}
+				</div>
+			{{/if}}
+			{{#if messages.warning}}
+				<div class="alert alert-warning">
+					{{{flashMessages messages.warning}}}
+				</div>
+			{{/if}}
+			{{#if messages.error}}
+				<div class="alert alert-danger">
+					{{{flashMessages messages.error}}}
+				</div>
+			{{/if}}
+		</div>
+	{{/if}}
+	<!-- The content block should contain the body of your template's content-->
+	{{{body}}}
+</div>
+</div>
+<div class="container">
+	<div id="footer">
+		<p>Developed by <a href="/portfolio" target="_blank">MD Ariful Islam</a>.</p>
+	</div>
+</div>
+{{!--
+    //- jQuery 1.11.3 is included by default, and required by both Bootstrap
+    //- and the KeystoneJS Content Editor. If you are not targeting IE8,
+    //- you can upgrade to 2.1.4 (also bundled) for better performance.
+--}}
+<script src="/js/jquery/jquery-1.11.3.min.js"></script>
+{{!--
+    //- Customise which Bootstrap javascript files are served by including
+    //- them specifically here, instead of bootstrap-3.3.5.min.js
+--}}
+<script src="/js/bootstrap/bootstrap-3.3.5.min.js"></script>
+
+</body>
+</html>

@@ -1,4 +1,7 @@
-/* eslint-disable linebreak-style */
+// @file teachersignin.js
+// @path /routes/views/session/teachersignin.js
+// @description login for teacher
+
 var keystone = require('keystone');
 
 exports = module.exports = function (req, res) {
@@ -7,14 +10,12 @@ exports = module.exports = function (req, res) {
 	var locals = res.locals;
 
 	// Set locals
-	locals.section = 'sirtrevor';
+	locals.section = 'teachersignin';
 	locals.filters = {
-		post: req.params.post,
 	};
 	locals.data = {
-		posts: [],
 	};
 
 	// Render the view
-	view.render('sirtrevor');
+	view.render('teachersignin', { layout: 'session' });
 };

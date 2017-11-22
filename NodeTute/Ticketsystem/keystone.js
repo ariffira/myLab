@@ -12,7 +12,7 @@ keystone.init({
 
 	'less': 'public',
 	'static': 'public',
-	'favicon': 'public/favicon.ico',
+	'favicon': 'public/pbl_logo.png',
 	'views': 'templates/views',
 	'view engine': '.hbs',
 
@@ -37,6 +37,8 @@ keystone.set('locals', {
 	editable: keystone.content.editable,
 });
 keystone.set('routes', require('./routes'));
+// set sign-in logo out of module
+keystone.set('signin logo', '/images/logo-email.gif');
 
 keystone.set('nav', {
 	posts: ['posts', 'post-categories'],
@@ -45,7 +47,6 @@ keystone.set('nav', {
 	users: 'users',
 	manageTickets: 'tickets',
 });
-
 
 
 keystone.start();
