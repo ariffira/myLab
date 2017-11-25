@@ -17,5 +17,6 @@ exports = module.exports = function (req, res) {
 	};
 
 	// Render the view
+	// add session layout view for signin ignore default layout
 	view.render('teachersignin', { layout: 'session' });
 };

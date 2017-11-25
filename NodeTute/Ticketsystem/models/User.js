@@ -12,9 +12,10 @@ User.add({
 	// role: { type: Types.Select, options: 'teacher, student', required: true, initial: false },
 	email: { type: Types.Email, initial: true, required: true, unique: true, index: true },
 	password: { type: Types.Password, initial: true, required: true },
-	password_confirm: { type: Types.Password, initial: true, required: true },
+	//password_confirm: { type: Types.Password, initial: true, required: true },
 }, 'Permissions', {
 	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },
+	isTeacher: { type: Boolean, label: 'Can access Teacher', index: true },
 });
 
 // Provide access to Keystone
@@ -22,6 +23,10 @@ User.schema.virtual('canAccessKeystone').get(function () {
 	return this.isAdmin;
 });
 
+// Provide Access to Keystone and create isTeacher
+User.schema.virtual('canAccessTeacher').get(function () {
+	return this.isTeacher;
+});
 
 /**
  * Relationships
@@ -32,5 +37,6 @@ User.relationship({ ref: 'Post', path: 'posts', refPath: 'author' });
 /**
  * Registration
  */
-User.defaultColumns = 'name, email, isAdmin';
+// default columns for adminUI
+User.defaultColumns = 'name, email, isAdmin, isTeacher';
 User.register();

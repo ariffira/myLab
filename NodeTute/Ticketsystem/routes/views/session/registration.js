@@ -12,14 +12,9 @@ exports = module.exports = function (req, res) {
 
 	// Set locals
 	locals.section = 'registration';
-	locals.filters = {
-	};
-	locals.data = {
-	};
-
-	// console.log(req);
-
 	locals.formData = req.body || {};
+	locals.validationErrors = {};
+	locals.registrationSubmitted = false;
 
 	view.on('post', { action: 'user.create' }, function (next) {
 
@@ -35,19 +30,18 @@ exports = module.exports = function (req, res) {
 			},
 			email: locals.formData.email,
 			password: locals.formData.password,
-			password_confirm: locals.formData.password_confirm,
-			// Add some user defaults here.
+			//password_confirm: locals.formData.password_confirm,
 		});
-
-		newUser.isAdmin = false;
-
+		console.log(newUser); //here newuser isAdmin is false
+		newUser.isAdmin = true;
+		// console.log(newUser); //here newuser isAdmin is true
 		newUser.save(function (err, result) {
 			if (err) {
 				locals.data.validationErrors = err.errors;
 				console.log(err);
 			} else {
 				req.flash('success', 'Account created. Please sign in.');
-
+				// console.log(result); //here result makes password encrypted
 				// redirect to sign in page for teacher
 				return res.redirect('/teachersignin');
 			}
@@ -57,5 +51,6 @@ exports = module.exports = function (req, res) {
 	});
 
 	// Render the view of template
+	// TODO: add another layout for registration session than default
 	view.render('registration');
 };
