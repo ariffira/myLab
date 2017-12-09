@@ -1,0 +1,58 @@
+//MONGODB tute files for short coding
+
+//check all databases list
+show dbs
+
+//check current database
+db
+
+//checkout another database
+use databaseName
+
+//clear all
+cls
+
+//create a new user in mongodb
+
+db.createUser({
+	user: "Ariful",
+	pwd: "1234",
+	roles:["readWrite", "dbAdmin"]
+});
+
+//create collection of data as
+db.createCollection('customers');
+
+//display collections
+show collections
+
+//insert documents in collection as
+db.customers.insert({firstName: "MD Ariful", lastName: "Islam"});
+
+//check and see the documents in collection
+db.customers.find();
+
+//if u like to insert multiple documents as array[] and also //possible to add 1 documents with more fields as gender here
+
+db.customers.insert([{firstName: "Tanzina", lastName: "Islam"}, {firstName: "Sumi", lastName: "Rahman"}, {firstName: "Surovi", lastName: "Rahman", gender: "female"}]);
+
+// to see documents pretty way
+db.customers.find().pretty();
+
+//update docs in collections. Here first value {valueTobeMatched and //delete}, and 2nd bracket value {valueToUpdate}...fields should be //exact match, when use _id then it should call as object(value).
+db.collectionName.update({firstname: "Tanzina"}, {firstname: changed name});
+
+//If you do not give new value for anyfield it will be deleted by //Update above command , so if we only want to add some values //without deleted existing value then use $set{}
+db.collectionName.update({firstname: "Tanzina"}, {$set:{gender: "female", Relationship: "married"}});
+
+//increment some value $inc used
+db.collectionName.update({firstname: "Tanzina"}, {$inc:{age: valueToincrement}});
+
+//if u update but it not exist then insert it 
+db.collectionName.update({firstname: "Mizanur"}, {firstname: changed name}, {upsert:true});
+
+//rename attribute 
+db.collectionName.update({firstname: "MD Ariful"}, {$rename:{"gender":"sex"});
+
+//remove data 
+db.collectionName.remove({firstname: "MD Ariful"});

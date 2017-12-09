@@ -1,0 +1,58 @@
+.center {
+  margin: auto;
+  width: 30%;
+  height: auto;
+  border: 6px solid black;
+  padding: 150px;
+  padding-top: inherit;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+.title h1 {
+  font-size: 18px;
+  color: black;
+  text-align: center;
+  text-decoration: underline;
+}
+form {
+  width: 100%;
+}
+form .row .icon {
+  width: 30%;
+  float: left;
+}
+form .row .icon .fa-user-circle-o {
+  font-size: 90px;
+}
+form .row .info {
+  width: 70%;
+  float: right;
+}
+form .row .info label {
+  text-align: center;
+  width: 50%;
+  padding: 5px 10px;
+}
+form .row .info input {
+  float: inherit;
+  width: 50%;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  padding: 4px 0px;
+}
+form .row .info select {
+  float: inherit;
+  width: 50%;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  padding: 4px 15px;
+}
+form .row .info input[type=button] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}

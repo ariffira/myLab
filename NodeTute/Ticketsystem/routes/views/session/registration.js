@@ -12,6 +12,7 @@ exports = module.exports = function (req, res) {
 
 	// Set locals
 	locals.section = 'registration';
+	locals.institutionTypes = User.fields.institutionType.ops;
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
 	locals.registrationSubmitted = false;
@@ -29,12 +30,14 @@ exports = module.exports = function (req, res) {
 				last: locals.formData.last,
 			},
 			email: locals.formData.email,
+			institution: locals.formData.institution,
+			institutionType: locals.formData.institutionType,
 			password: locals.formData.password,
 			//password_confirm: locals.formData.password_confirm,
 		});
-		console.log(newUser); //here newuser isAdmin is false
-		newUser.isAdmin = true;
-		// console.log(newUser); //here newuser isAdmin is true
+		// console.log(newUser); // here newuser isAdmin is false
+		newUser.isTeacher = true;
+		console.log(newUser); // here newuser isAdmin is true
 		newUser.save(function (err, result) {
 			if (err) {
 				locals.data.validationErrors = err.errors;
@@ -43,7 +46,7 @@ exports = module.exports = function (req, res) {
 				req.flash('success', 'Account created. Please sign in.');
 				// console.log(result); //here result makes password encrypted
 				// redirect to sign in page for teacher
-				return res.redirect('/teachersignin');
+				return res.redirect('/session/teachersignin');
 			}
 			next();
 		});
