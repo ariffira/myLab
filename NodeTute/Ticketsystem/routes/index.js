@@ -25,6 +25,7 @@ exports = module.exports = function (app) {
 	app.all('/registration', routes.views.session.registration);
 	app.get('/sirtrevor', routes.views.sirtrevor);
 	app.get('/showcase', routes.views.showcase);
-	app.get('/teachersignin', routes.views.session.teachersignin);
+	app.all('/teachersignin', routes.views.session.teachersignin);
+	app.get('/dashboard', middleware.requirePblUser, routes.views.dashboard);
 
 };

@@ -46,3 +46,14 @@ exports.requireUser = function (req, res, next) {
 		next();
 	}
 };
+
+/**
+    Access control for Teacher and student
+ */
+exports.requirePblUser = function (req, res, next) {
+	if (!req.user) {
+		res.redirect('/teachersignin');
+	} else {
+		next();
+	}
+};

@@ -8,30 +8,42 @@ var keystone = require('keystone');
 exports = module.exports = function (req, res) {
 
 	var view = new keystone.View(req, res);
-	// var locals = res.locals;
-
-	var UserList = keystone.list(keystone.get('user model'));
-	var locals = {
-		csrf: { header: {} },
-		logo: keystone.get('signin logo'),
-		user: req.user ? {
-			id: req.user.id,
-			name: UserList.getDocumentName(req.user) || '(no name)',
-		} : undefined,
-		userCanAccessTeacher: !!(req.user && req.user.userCanAccessTeacher),
-	};
-	locals.csrf.header[keystone.security.csrf.CSRF_HEADER_KEY] = keystone.security.csrf.getToken(req, res);
-	// Set locals
+	var locals = res.locals;
+	
+	if (req.user) {
+		return res.redirect('/');
+	}
+	
 	locals.section = 'teachersignin';
-	locals.filters = {
-	};
-	locals.data = {
-	};
-	console.log(locals.user);
+	locals.formData = req.body || {};
+	locals.validationErrors = {};
+	locals.teachersigninSubmitted = false;
+	console.log(locals.formData);
 	view.on('post', { action: 'user.login' }, function (next) {
-		console.log('Successful login');
-		console.log(locals);
-		next();
+		
+		if (!locals.formData.email || !locals.formData.password) {
+			req.flash('error', 'Please enter your username and password.');
+			return next();
+		}
+
+		var onSuccess = function () {
+			if (req.user)
+			{
+				res.redirect('/dashboard');
+			}
+			else {
+				req.flash('error', 'Please enter your username and password.');
+				res.redirect('/teachersignin');
+			}
+		};
+
+		var onFail = function () {
+			req.flash('error', 'Your username or password were incorrect, please try again.');
+			return next();
+		};
+
+		keystone.session.signin({ email: locals.formData.email, password: locals.formData.password }, req, res, onSuccess, onFail);
+
 	});
 	
 	// Render the view
