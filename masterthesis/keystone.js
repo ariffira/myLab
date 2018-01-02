@@ -16,7 +16,9 @@ keystone.init({
 
 	'less': 'public',
 	'static': 'public',
-	'favicon': 'public/favicon.ico',
+	// new icon added
+	'favicon': 'public/pbl_logo.png',
+	// 'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': '.hbs',
 
@@ -49,7 +51,8 @@ keystone.set('locals', {
 
 // Load your project's Routes
 keystone.set('routes', require('./routes'));
-
+// set sign-in logo out of module
+keystone.set('signin logo', '/images/logo-email-pbl.gif');
 
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
