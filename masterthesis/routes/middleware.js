@@ -22,6 +22,8 @@ exports.initLocals = function (req, res, next) {
 		{ label: 'Home', key: 'home', href: '/' },
 		{ label: 'Gallery', key: 'gallery', href: '/gallery' },
 		{ label: 'Contact', key: 'contact', href: '/contact' },
+		{ label: 'Create a new Account', key: 'signUp', href: '/signUp' },
+		{ label: 'User Sign-In', key: 'signIn', href: '/signIn' },
 	];
 	res.locals.user = req.user;
 	next();
@@ -50,6 +52,17 @@ exports.requireUser = function (req, res, next) {
 	if (!req.user) {
 		req.flash('error', 'Please sign in to access this page.');
 		res.redirect('/keystone/signin');
+	} else {
+		next();
+	}
+};
+
+/**
+ Access control for Teacher and student
+ */
+exports.requirePblUser = function (req, res, next) {
+	if (!req.user) {
+		res.redirect('/signIn');
 	} else {
 		next();
 	}

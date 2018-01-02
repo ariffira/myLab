@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>ePbl</title>
+		<title>ePbl Landing page</title>
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link href="/styles/site.min.css" rel="stylesheet">
 
@@ -30,7 +30,7 @@
 								<span class="sr-only">Toggle navigation</span>
 								<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
 							</button>
-							<a href="/" class="navbar-brand">ePbl</a>
+							<a href="/" class="navbar-brand">ePbl Landing Page</a>
 						</div>
 						<div class="collapse navbar-collapse">
 							<ul class="nav navbar-nav navbar-left">
@@ -42,9 +42,9 @@
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								{{#if user}}
-								<li><a href="/keystone/signout">Sign Out</a></li>
+								<li><a href="/keystone/signout"> Admin Sign Out</a></li>
 								{{else}}
-								<li><a href="/keystone/signin">Sign In</a></li>
+								<li><a href="/keystone/signin"> Admin Sign In</a></li>
 								{{/if}}
 							</ul>
 						</div>
@@ -85,8 +85,11 @@
 			{{{body}}}
 		</div>
 		<div class="container">
-			<div id="footer">
-				<p>Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.</p>
+			<div id="footer" style="text-align: center">
+				<p>This is a Demo project for masters Thesis.
+					<br>Developed by <a href="https://www.linkedin.com/in/md-ariful-islam-b622b560/" target="_blank">Md Ariful Islam, MCE, UDE</a>.
+					Copyright 2018
+				</p>
 			</div>
 		</div>
 		{{!--
