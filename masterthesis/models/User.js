@@ -9,7 +9,7 @@ var User = new keystone.List('User');
 
 User.add({
 	name: { type: Types.Name, required: true, index: true },
-	// role: { type: Types.Select, options: 'teacher, student', required: true, initial: false },
+	role: { type: Types.Select, options: 'teacher, student', required: true, initial: true },
 	// phone: { type: String, width: 'short' },
 	// photo: { type: Types.CloudinaryImage, collapse: true },
 	email: { type: Types.Email, initial: true, required: true, unique: true, index: true },

@@ -32,6 +32,7 @@ exports = module.exports = function (req, res) {
 			email: locals.formData.email,
 			institution: locals.formData.institution,
 			institutionType: locals.formData.institutionType,
+			role: locals.formData.role,
 			password: locals.formData.password,
 			//password_confirm: locals.formData.password_confirm,
 		});

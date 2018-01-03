@@ -19,7 +19,7 @@ var _ = require('lodash');
 */
 exports.initLocals = function (req, res, next) {
 	res.locals.navLinks = [
-		{ label: 'Home', key: 'home', href: '/' },
+		// { label: 'Home', key: 'home', href: '/' },
 		{ label: 'Gallery', key: 'gallery', href: '/gallery' },
 		{ label: 'Contact', key: 'contact', href: '/contact' },
 		{ label: 'Create a new Account', key: 'signUp', href: '/signUp' },
@@ -59,6 +59,7 @@ exports.requireUser = function (req, res, next) {
 
 /**
  Access control for Teacher and student
+ todo: isTeacher=false then go to signin
  */
 exports.requirePblUser = function (req, res, next) {
 	if (!req.user) {
