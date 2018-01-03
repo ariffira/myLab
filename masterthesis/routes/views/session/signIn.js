@@ -1,7 +1,7 @@
 /* eslint-disable no-trailing-spaces */
 // @file signIn.js
 // @path /routes/views/session/signIn.js
-// @description login for teacher
+// @description login for PBL dashboard Users(teacher & students)
 
 var keystone = require('keystone');
 

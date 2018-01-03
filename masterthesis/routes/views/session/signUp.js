@@ -37,7 +37,7 @@ exports = module.exports = function (req, res) {
 			//password_confirm: locals.formData.password_confirm,
 		});
 		// console.log(newUser); // here newuser isAdmin is false
-		newUser.isTeacher = true;
+		newUser.pblUser = true;
 		console.log(newUser); // here newuser isAdmin is true
 		newUser.save(function (err, result) {
 			if (err) {
