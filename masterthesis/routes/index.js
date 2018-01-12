@@ -42,7 +42,7 @@ exports = module.exports = function (app) {
 	app.all('/signIn', routes.views.session.signIn);
 	// Protected routes for login Users
 	app.get('/dashboard', middleware.requirePblUser, routes.views.dashboard);
-	app.get('/idea', middleware.requirePblUser, routes.views.idea);
+	app.all('/idea', middleware.requirePblUser, routes.views.idea);
 	app.get('/myStudent', middleware.requirePblUser, routes.views.myStudent);
 	app.get('/myProfile', middleware.requirePblUser, routes.views.myProfile);
 	app.get('/pblGenerate', middleware.requirePblUser, routes.views.pblGenerate);

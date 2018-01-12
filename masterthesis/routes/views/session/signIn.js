@@ -29,7 +29,11 @@ exports = module.exports = function (req, res) {
 		var onSuccess = function () {
 			if (req.user)
 			{
-				res.redirect('/dashboard');
+				if (!req.user.pblUser) {
+					res.redirect('/keystone');
+				} else {
+					res.redirect('/dashboard');
+				}
 			}
 			else {
 				req.flash('error', 'Please enter your username and password.');

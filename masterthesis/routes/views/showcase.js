@@ -7,7 +7,7 @@ exports = module.exports = function (req, res) {
 
 	// locals.section is used to set the currently selected
 	// item in the header navigation.
-	locals.section = 'showcase';
+	locals.section = 'Create showcase';
 
 	// Render the view
 	// add session layout view for signin ignore default layout

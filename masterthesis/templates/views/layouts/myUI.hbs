@@ -16,6 +16,8 @@
 	<link href="/bootstrap-admin-theme/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 	<!-- Custom styles for this template-->
 	<link href="/bootstrap-admin-theme/css/sb-admin.css" rel="stylesheet">
+	<!-- Sir trevor js CSS -->
+	<link href="/sir-trevor-0.6.6/sir-trevor.css" rel="stylesheet">
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -206,6 +208,13 @@
 				</div>
 			{{/if}}
 			<!-- The content block should contain the body of your template's content-->
+			<!-- Breadcrumbs-->
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="/dashboard">Dashboard</a>
+				</li>
+				<li class="breadcrumb-item active">{{section}}</li>
+			</ol>
 			{{{body}}}
 		</div>
 	</div>
@@ -254,6 +263,9 @@
 	<!-- Custom scripts for this page-->
 	<script src="/bootstrap-admin-theme/js/sb-admin-datatables.min.js"></script>
 	<script src="/bootstrap-admin-theme/js/sb-admin-charts.min.js"></script>
+	<!-- sir trevor js files-->
+	<script src="/sir-trevor-0.6.6/sir-trevor.js"></script>
+	<script src="/js/initSirTrevor.js"></script>
 </div>
 </body>
 
