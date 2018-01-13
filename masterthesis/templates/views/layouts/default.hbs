@@ -42,9 +42,14 @@
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								{{#if user}}
-								<li><a href="/keystone/signout">Sign Out</a></li>
+								<li><a href="/signout">Sign Out</a></li>
 								{{else}}
-								<li><a href="/keystone/signin"> Admin Sign In</a></li>
+								<li>
+									<a href="/signin"> User Sign-In</a>
+								</li>
+								<li>
+									<a href="/signUp">User Registration</a>
+								</li>
 								{{/if}}
 							</ul>
 						</div>

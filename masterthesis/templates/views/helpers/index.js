@@ -326,5 +326,34 @@ module.exports = function () {
 		return obj._[underscoreMethod].format();
 	};
 
+	/**
+	 * Dashboard  helpers using keystoneJs editor
+	 * ===========================
+	 */
+
+	// block rendering for keystone admin css
+	_helpers.isPblEditorCSS = function (user, options) {
+		var output = '';
+		if (typeof (user) !== 'undefined' && user.pblUser) {
+			output = cssLinkTemplate({
+				href: '/keystone/styles/content/editor.min.css',
+			});
+		}
+		return new hbs.SafeString(output);
+	};
+
+	// block rendering for keystone admin js
+	_helpers.isPblEditorJS = function (user, options) {
+		var output = '';
+		if (typeof (user) !== 'undefined' && user.pblUser) {
+			output = scriptTemplate({
+				src: '/keystone/js/content/editor.js',
+			});
+		}
+		return new hbs.SafeString(output);
+	};
+
+
 	return _helpers;
 };
+

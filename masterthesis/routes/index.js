@@ -40,6 +40,7 @@ exports = module.exports = function (app) {
 	// new signUp and signIn routes for Users
 	app.all('/signUp', routes.views.session.signUp);
 	app.all('/signIn', routes.views.session.signIn);
+	app.all('/signOut', routes.views.session.signOut);
 	// Protected routes for login Users
 	app.get('/dashboard', middleware.requirePblUser, routes.views.dashboard);
 	app.all('/idea', middleware.requirePblUser, routes.views.idea);
