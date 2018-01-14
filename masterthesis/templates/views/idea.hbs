@@ -1,15 +1,15 @@
 <form method="post" id="ideaGen">
 	<input type="hidden" name="action" value="idea.generate">
-	<div class="form-group {{#if validationErrors.title}}has-error{{/if}}">
+	<div class="form-group row">
 		<label for="ideaTitle" class="col-md-2">Title:</label>
-		<input type="text" name="title" class="form-control col-md-12" value="{{formData.title}}" placeholder="Give a Title for your idea.....">
+		<input type="text" name="title" class="form-control col-md-10" value="{{formData.title}}" placeholder="Give a Title for your idea.....">
 	</div>
-	<div class="form-group">
+	<div class="form-group row">
 		<label for="ideaDescription" class="col-md-2">Description:</label>
-		<textarea name="description" class="form-control col-md-12" id="ideaGen" rows="3"></textarea>
+		<textarea name="description" class="form-control col-md-10" id="ideaGen" rows="3"></textarea>
 	</div>
 	<div class="form-group">
-		<label for="moreContent" class="col-md-10">Add More Content(Text, Image, Video):</label>
+		<label for="moreContent" class="col-md-12">Add More Content(Text, Image, Video):</label>
 		<textarea name="moreContent" class="form-control col-md-12 sir-trevor" id="ideaGen"></textarea>
 	</div>
 	<button type="submit" class="btn btn-primary">Idea Generate</button>
