@@ -6,6 +6,3 @@ $(document).ready(function () {
 	});
 });
 
-SirTrevor.setDefaults({
-	uploadUrl: '/public/images',
-});

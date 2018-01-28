@@ -1,6 +1,7 @@
 // @file signUp.js
 // @path /routes/views/session/signUp.js
 // @description Handles the post request when the user tries to signUp up.
+// @author: MD Ariful Islam
 
 var keystone = require('keystone');
 var User = keystone.list('User');

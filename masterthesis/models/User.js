@@ -36,7 +36,7 @@ User.schema.virtual('canAccessDashboard').get(function () {
  * Relationships
  */
 User.relationship({ ref: 'Post', path: 'posts', refPath: 'author' });
-
+User.relationship({ ref: 'Project', path: 'projects', refPath: 'createdBy' });
 
 /**
  * Registration

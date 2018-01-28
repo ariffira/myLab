@@ -29,6 +29,7 @@ keystone.pre('render', middleware.flashMessages);
 // Import Route Controllers
 var routes = {
 	views: importRoutes('./views'),
+	api: importRoutes('./api'),  // import API controllers File Upload
 };
 
 // Setup Route Bindings
@@ -46,8 +47,16 @@ exports = module.exports = function (app) {
 	app.all('/idea', middleware.requirePblUser, routes.views.idea);
 	app.get('/myStudent', middleware.requirePblUser, routes.views.myStudent);
 	app.get('/myProfile', middleware.requirePblUser, routes.views.myProfile);
-	app.get('/pblGenerate', middleware.requirePblUser, routes.views.pblGenerate);
+	app.all('/pblGenerate', middleware.requirePblUser, routes.views.pblGenerate);
 	app.get('/showcase', middleware.requirePblUser, routes.views.showcase);
+
+	// File Upload Route
+	app.get('/api/fileupload/list', keystone.middleware.api, routes.api.fileupload.list);
+	app.get('/api/fileupload/:id', keystone.middleware.api, routes.api.fileupload.get);
+	app.all('/api/fileupload/:id/update', keystone.middleware.api, routes.api.fileupload.update);
+	app.all('/api/fileupload/create', keystone.middleware.api, routes.api.fileupload.create);
+	app.get('/api/fileupload/:id/remove', keystone.middleware.api, routes.api.fileupload.remove);
+	// File Upload Route end here
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
