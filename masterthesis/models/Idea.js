@@ -8,15 +8,17 @@ var Types = keystone.Field.Types;
 var Idea = new keystone.List('Idea');
 
 Idea.add({
-	title: { type: String, required: true , initial: true},
-	description: { type: Types.Textarea, required: true, initial: true },
-	author: { type: Types.Relationship, ref: 'User' },
+	title: { type: String, required: true, initial: true },
+	description: { type: Types.Textarea },
 	createdAt: { type: Date, default: Date.now },
+	createdBy: { type: Types.Relationship, ref: 'User' },
+	publishedAt: Date,
+	moreContent: { type: Types.Code, language: 'json' },
 });
 
 /**
  * Registration
  */
-// default columns for adminUI
-Idea.defaultColumns = 'title, description, author, createdAt';
+// default columns
+Idea.defaultColumns = 'title, description, createdBy, createdAt';
 Idea.register();

@@ -18,19 +18,21 @@ exports = module.exports = function (req, res) {
 
 	view.on('post', { action: 'pbl.generate' }, function (next) {
 		// console.log(req.user.email);
+		// creating a new object for project data
 		var newProject = new Project.model({
 			title: locals.formData.title,
 			description: locals.formData.description,
-			createdBy: locals.user, // add user data
+			createdBy: locals.user._id, // add user data
 			file_upload: locals.formData.file_upload,
 		});
 		console.log('Generating new PBL project.....');
+		// saving or inserting the data into database
 		newProject.save(function (err, result) {
 			if (err) {
 				locals.data.validationErrors = err.errors;
 				console.log(err);
 			} else {
-				req.flash('success', 'A new Project generated...');
+				req.flash('success', 'A new Project data saved successfully...');
 				console.log(result);
 				return res.redirect('/pblGenerate');
 			}

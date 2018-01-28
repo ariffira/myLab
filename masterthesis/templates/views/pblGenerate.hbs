@@ -1,4 +1,4 @@
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 	<input type="hidden" name="action" value="pbl.generate">
 	<div class="form-group row">
 		<label for="formTitle" class="col-sm-12 col-form-label"><b>Initial Stage: Driving Question Setup</b></label>
@@ -16,11 +16,18 @@
 		</div>
 	</div>
 	<div class="form-group row">
+		<label for="learningGoals" class="col-sm-2 col-form-label">Learning Goals:</label>
+		<div class="col-sm-10">
+			<input type="text" name="learningGoals" class="form-control" id="inputlearningGoals" placeholder="Give List of Learning goals...">
+		</div>
+	</div>
+	<div class="form-group row">
 		<label for="pblImage" class="col-sm-2 col-form-label">Add Resource:</label>
 		<div class="col-sm-8">
 			<input type="file" name="file_upload" id="file_upload" class="btn btn-primary">
 			<label for="file_name">File Name:<input type="text" name="file_name" id="file_name" /></label>
 			<input type="button" value="Upload" class="btn btn-primary" onclick="uploadFile()">
+			<br>
 		</div>
 		<div class="col-sm-2">
 			<ul id="file_list">

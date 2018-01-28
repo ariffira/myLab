@@ -6,11 +6,12 @@ var Types = keystone.Field.Types;
  * ==========
  */
 var Project = new keystone.List('Project');
+
 var myStorage = new keystone.Storage({
 	adapter: keystone.Storage.Adapters.FS,
 	fs: {
-		path: 'public/uploads/files',
-		publicPath: '/uploads/files',
+		path: keystone.expandPath('./public/uploads/files'), // required; path where the files should be stored
+		publicPath: '/public/uploads/files', // path where files will be served
 	},
 });
 
