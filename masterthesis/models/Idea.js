@@ -13,7 +13,7 @@ Idea.add({
 	createdAt: { type: Date, default: Date.now },
 	createdBy: { type: Types.Relationship, ref: 'User' },
 	publishedAt: Date,
-	moreContent: { type: Types.Code, language: 'json' },
+	file_upload: { type: Types.Code, language: 'json' },
 });
 
 /**

@@ -18,15 +18,15 @@ exports = module.exports = function (req, res) {
 	locals.validationErrors = {};
 
 	view.on('post', { action: 'idea.generate' }, function (next) {
-		console.log(locals.formData.moreContent);
+		// console.log(locals.formData.file_upload);
 		// creating a new object for project data
 		var newIdea = new Idea.model({
 			title: locals.formData.title,
 			description: locals.formData.description,
 			createdBy: locals.user._id, // add user data
-			moreContent: locals.formData.moreContent,
+			file_upload: locals.formData.file_upload,
 		});
-		console.log(newIdea);
+		// console.log(newIdea);
 		console.log('Generating new Ideas.....');
 		// saving ideas in database
 		newIdea.save(function (err, result) {

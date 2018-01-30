@@ -1,5 +1,17 @@
-<h3>Name:  {{user.name.first}} {{user.name.last}}</h3>
+<div class="card">
+	<h5 class="card-header">{{user.name.first}} {{user.name.last}}</h5>
+	<div class="card-body">
+		<img class="d-flex mr-3" src="http://placehold.it/180x180" alt="profile photo">
+		<h5 class="card-title">about me</h5>
+		<p class="card-text">Write down something about you....</p>
+		<a href="#" class="btn btn-primary">Edit Profile</a>
+	</div>
+</div>
+
+
+<!--
+<h3>Name:  {{!--user.name.first}} {{user.name.last}}</h3>
 <h3>Email: {{user.email}}</h3>
 <h3>Institution: {{user.institution}}</h3>
 <h3>Institution Type: {{user.institutionType}}</h3>
-<h3>You are a {{user.role}}</h3>
+<h3>You are a {{user.role--}}</h3>-->
