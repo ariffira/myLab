@@ -36,3 +36,4 @@ node_modules
 
 # upload storage
 public/uploads/
+protected/uploads/

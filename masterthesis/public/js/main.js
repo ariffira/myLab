@@ -1,16 +1,12 @@
-$(document).ready(function () {
-	// debugger;
-
-});
-
-function uploadFile () {
+// file uploads
+function uploadMyFile () {
 	// debugger;
 
 	var selectedFile = $('#file_upload').get(0).files[0];
 
 	// Error handling
 	if (selectedFile == undefined)
-		{ alert('You did not select a file!'); }
+	{ alert('You did not select a file!'); }
 
 	// Create the FormData data object and append the file to it.
 	var newFile = new FormData();
@@ -35,18 +31,21 @@ function uploadFile () {
 
 			// Fill out the file metadata information
 			data.file_upload.name = $('#file_name').val();
-			data.file_upload.url = '/protected/uploads/files' + data.file_upload.file.filename;
+			data.file_upload.url = '/protected/uploads/files/' + data.file_upload.file.filename;
 			data.file_upload.fileType = data.file_upload.file.mimetype;
 			data.file_upload.createdTimeStamp = new Date();
 
 			// Update the file with the information above.
 			$.get('/api/fileupload/' + data.file_upload._id + '/update', data.file_upload, function (data) {
 				// debugger;
-
+                console.log(data);
 				console.log('File information updated.....');
 
 				// Add the uploaded file to the uploaded file list.
 				$('#file_list').append('<li><a href="' + data.collection.url + '" download>' + data.collection.name + '</a></li>');
+                // sending back file new path input
+				$('#new_path').append('<input type="hidden" name="uploaded_file_path" value="' + data.collection.url + '">');
+
 
 			})
 

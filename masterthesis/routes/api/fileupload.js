@@ -1,6 +1,7 @@
 var async = require('async'),
 	keystone = require('keystone');
 var exec = require('child_process').exec;
+var fs = require('file-system');
 
 var FileData = keystone.list('FileUpload');
 
@@ -66,7 +67,6 @@ exports.create = function (req, res) {
 
 	var item = new FileData.model();
 	var	data = (req.method == 'POST') ? req.body : req.query;
-
 	item.getUpdateHandler(req).process(req.files, function (err) {
 
 		if (err) return res.apiError('error', err);
@@ -76,6 +76,32 @@ exports.create = function (req, res) {
 		});
 
 	});
+};
+
+/**
+ * Upload a New File
+ */
+exports.create1 = function (req, res) {
+	var myJSON = JSON.stringify(req.files);
+	console.log(myJSON.attachment.path);
+	/*
+	fs.readFile(req.files.attachment.file.path, function(err, data){
+
+		var newPath = "/protected/uploads/files/"+req.files.attachment.file.name;  //log data to find your right files path
+		fs.writeFile(newPath, data, function(err) {
+
+			if(err)
+			{
+				console.log('Error writing file');
+				console.log(err);
+				res.json(null);
+			}
+			else
+			{
+				res.json({ path: newPath}); //Respond with json! This will be attached to your sir trevor block
+			}
+		});
+	}); */
 };
 
 /**

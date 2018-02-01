@@ -22,6 +22,11 @@ var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
 
+// multer files
+var multer = require('multer');
+var upload = multer({ dest: 'protected/uploads/files' });
+
+
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
@@ -55,8 +60,15 @@ exports = module.exports = function (app) {
 	app.get('/api/fileupload/:id', keystone.middleware.api, routes.api.fileupload.get);
 	app.all('/api/fileupload/:id/update', keystone.middleware.api, routes.api.fileupload.update);
 	app.all('/api/fileupload/create', keystone.middleware.api, routes.api.fileupload.create);
+	app.all('/api/fileupload/create1', keystone.middleware.api, routes.api.fileupload.create1);
 	app.get('/api/fileupload/:id/remove', keystone.middleware.api, routes.api.fileupload.remove);
 	// File Upload Route end here
+
+	// Image upload start
+	app.post('/photoUpload', upload.single('profilePic'), function (req, res) {
+		res.send(routes.views.photoUpload);
+	});
+	// Image upload ends
 
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);

@@ -17,13 +17,14 @@ exports = module.exports = function (req, res) {
 	locals.validationErrors = {};
 
 	view.on('post', { action: 'pbl.generate' }, function (next) {
-		// console.log(req.user.email);
+		console.log(locals.formData);
 		// creating a new object for project data
 		var newProject = new Project.model({
 			title: locals.formData.title,
 			description: locals.formData.description,
 			createdBy: locals.user._id, // add user data
-			file_upload: locals.formData.file_upload,
+			file_name: locals.formData.file_name,
+			uploaded_file_path: locals.formData.uploaded_file_path,
 		});
 		console.log('Generating new PBL project.....');
 		// saving or inserting the data into database

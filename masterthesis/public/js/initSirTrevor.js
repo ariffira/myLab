@@ -5,7 +5,7 @@ $(document).ready(function () {
 		blockTypes: ['Text', 'Image', 'Video'],
 	});
 	SirTrevor.setDefaults({
-		uploadUrl: '/api/fileupload/create',
+		uploadUrl: '/api/fileupload/create1',
 	});
 });
 
