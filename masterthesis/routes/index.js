@@ -24,7 +24,17 @@ var importRoutes = keystone.importer(__dirname);
 
 // multer files
 var multer = require('multer');
-var upload = multer({ dest: 'protected/uploads/files' });
+// var upload = multer({ dest: 'uploads/files' });
+var storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, 'protected/uploads/files')
+	},
+	filename: function (req, file, cb) {
+		cb(null, file.fieldname + '-' + Date.now())
+	},
+});
+
+var upload = multer({ storage: storage }).single('myPhoto');
 
 
 // Common Middleware
@@ -60,13 +70,19 @@ exports = module.exports = function (app) {
 	app.get('/api/fileupload/:id', keystone.middleware.api, routes.api.fileupload.get);
 	app.all('/api/fileupload/:id/update', keystone.middleware.api, routes.api.fileupload.update);
 	app.all('/api/fileupload/create', keystone.middleware.api, routes.api.fileupload.create);
-	app.all('/api/fileupload/create1', keystone.middleware.api, routes.api.fileupload.create1);
+	app.all('/api/fileupload/createNew', keystone.middleware.api, routes.api.fileupload.createNew);
 	app.get('/api/fileupload/:id/remove', keystone.middleware.api, routes.api.fileupload.remove);
 	// File Upload Route end here
 
 	// Image upload start
-	app.post('/photoUpload', upload.single('profilePic'), function (req, res) {
-		res.send(routes.views.photoUpload);
+	app.post('/photoUpload', function (req, res) {
+		upload(req, res, function (err) {
+			if (err) {
+				console.log(err);
+			}
+		});
+		console.log('Photo Uploaded....');
+		res.send(routes.views.myProfile);
 	});
 	// Image upload ends
 

@@ -11,7 +11,7 @@ function uploadMyFile () {
 	// Create the FormData data object and append the file to it.
 	var newFile = new FormData();
 	newFile.append('file_upload', selectedFile); // This is the raw file that was selected
-
+	// console.log(newFile);
 	// Set the form options.
 	var opts = {
 		url: '/api/fileupload/create',
@@ -25,7 +25,7 @@ function uploadMyFile () {
 		success: function (data) {
 			// Dev Note: KeystoneAPI only allows file and image uploads with the file itself. Any extra metadata will have to
 			// be uploaded/updated with a second call.
-
+            // console.log(data);
 			// debugger;
 			console.log('File upload succeeded! ID: ' + data.file_upload._id);
 
