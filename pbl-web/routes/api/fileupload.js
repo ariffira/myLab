@@ -90,7 +90,7 @@ exports.createNew = function (req, res) {
 	console.log(tmpFile);
 	fs.readFile(tmpFile.path, function (err, data) {
 
-		var newPath = 'protected/uploads/files/' + tmpFile.name;  // log data to find your right files path
+		var newPath = 'public/uploads/files/' + tmpFile.name;  // log data to find your right files path
 		fs.writeFile(newPath, data, function (err) {
 
 			if (err)
@@ -101,9 +101,13 @@ exports.createNew = function (req, res) {
 			}
 			else
 			{
+				// todo: fix path name problem among sir-trevor file-system and keystone
+				// rename path as keystone image only take /uploads/files format not public/uploads/files
+				var finalPath = '/uploads/files/' + tmpFile.name;
+				// save file url based on sir trevor format { file: { url: '/xyz/abc.jpg' }}
 				var path = {
 					file: {
-						url: '/' + newPath // by adding this '/' sir trevor have correct path of image
+						url: finalPath
 					}
 				};
 
@@ -130,7 +134,7 @@ exports.remove = function (req, res) {
 			if (err) return res.apiError('database error', err);
 
 			// Delete the file
-			exec('rm protected/uploads/files/' + fileId + '.*', function (err, stdout, stderr) {
+			exec('rm public/uploads/files/' + fileId + '.*', function (err, stdout, stderr) {
 				if (err) {
 					console.log('child process exited with error code ' + err.code);
 					return;
