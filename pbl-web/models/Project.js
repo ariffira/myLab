@@ -13,9 +13,25 @@ Project.add({
 	createdBy: { type: Types.Relationship, ref: 'User' },
 	createdAt: { type: Date, default: Date.now },
 	publishedAt: Date,
+	// allLearningGoals: { type: String },
+	allLearningGoals: { type: Types.Code, language: 'json' },
 	file_name: { type: String },
 	uploaded_file_path: { type: Types.Url },
+	resources_upload: { type: Types.Code, language: 'json' },
+	// participants: { type: String },
+	participants: { type: Types.Code, language: 'json' },
+	// participants: { type: Types.Relationship, ref: 'MyStudent', many: true },
+	status: { type: Types.Select, options: 'Created, Running, Finished' },
+	notificationId: { type: Types.Relationship, ref: 'Notification' },
+	startDate: { type: Date },
+	endDate: { type: Date },
 });
+
+/**
+ * Relationships
+ */
+-Project.relationship({ ref: 'User', path: 'users', refPath: 'projectId' });
+Project.relationship({ ref: 'TaskPlan', path: 'taskplans', refPath: 'projectId' });
 
 /**
  * page registration

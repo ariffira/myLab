@@ -1,0 +1,96 @@
+<div class="form-group">
+	<div class="form-row">
+		<div class="col-md-12">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addLearningAgendaModel">
+				<i class="fa fa-fw fa-question-circle"></i> Add Question
+			</button>
+		</div>
+	</div>
+</div>
+{{#if data.learningAgenda}}
+	<div class="form-group">
+		<div class="form-row">
+			<div class="col-md-12">
+				<table class="table table-bordered">
+					<caption>List of Learning agendas</caption>
+					<tbody>
+					{{#each data.learningAgenda}}
+						<tr>
+							<th scope="row">Learning agenda no: {{inc @index}}</th>
+							<td>
+								<a href="/learningAgenda/{{_id}}/detailLearningAgenda">Question:{{question}}</a>
+								, By: {{createdBy.name.first}} {{createdBy.name.last}}, Added: {{date createdAt}}
+							</td>
+						</tr>
+					{{/each}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{{else}}
+	{{#ifeq user.role 'student' }}
+		{{#if user.projectId }}
+			<div class="form-group">
+				<div class="form-row">
+					<h5>There is no Learning Agenda for this project. Please create a Learning Agenda question first.</h5>
+				</div>
+			</div>
+		{{else}}
+			<div class="form-group">
+				<div class="form-row">
+					<h5>You do not have any project yet. Please enroll in a project or contact with your teacher</h5>
+				</div>
+			</div>
+		{{/if}}
+	{{/ifeq}}
+	{{#ifeq user.role 'teacher' }}
+		{{#if user.projectId }}
+			<div class="form-group">
+				<div class="form-row">
+					<h5>There is no Learning Agenda for this project. Please create a Learning Agenda question first.</h5>
+				</div>
+			</div>
+		{{else}}
+			<div class="form-group">
+				<div class="form-row">
+					<h5>You do not have any project yet. Please create project and add your students in the project then generate it</h5>
+				</div>
+			</div>
+		{{/if}}
+	{{/ifeq}}
+{{/if}}
+<!-- Modal for add learning agenda -->
+<div class="modal fade" id="addLearningAgendaModel" tabindex="-1" role="dialog" aria-labelledby="addLearningAgendaModelLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="addLearningAgendaModelLabel">Add Question</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<!-- add learningAgenda form start -->
+				<form method="post">
+					<input type="hidden" name="action" value="add.learningAgenda">
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-12">
+								<label for="learningAgendaTitle">Your Question:</label>
+								<input type="text" name="question" class="form-control" placeholder="Write a question for the learningAgenda..?">
+							</div>
+						</div>
+					</div>
+					<div class="form-actions">
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Add</button>
+						</div>
+					</div>
+				</form>
+				<!-- add learningAgenda form end -->
+			</div>
+		</div>
+	</div>
+</div>

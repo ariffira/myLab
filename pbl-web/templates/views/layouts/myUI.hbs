@@ -18,6 +18,8 @@
 	<link href="/bootstrap-admin-theme/css/sb-admin.css" rel="stylesheet">
 	<!-- Sir trevor js CSS -->
 	<link href="/sir-trevor-0.6.6/sir-trevor.css" rel="stylesheet">
+	<!-- selectize css -->
+	<link href="/selectize/css/selectize.css" rel="stylesheet">
 	{{!-- This file provides the default styling for the KeystoneJS Content Editor
     - only renders when user is logged in and PblUser--}}
 	{{{isPblEditorCSS user}}}
@@ -32,46 +34,96 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarResponsive">
 		<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-			<li class="nav-item" data-toggle="tooltip" data-placement="right" title="PBL Dashboard">
+			<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Time-Line shows all activities, progress and project updates from current time">
 				<a class="nav-link" href="/dashboard">
 					<i class="fa fa-fw fa-dashboard"></i>
-					<span class="nav-link-text">PBL Dashboard</span>
+					<span class="nav-link-text">Time-Line</span>
 				</a>
+			</li>
+			{{#if user.projectId}}
+			<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Current Project">
+				<a class="nav-link" href="/currentProject/{{user.projectId}}">
+					<i class="fa fa-fw fa-clipboard"></i>
+					<span class="nav-link-text">Current Project</span>
+				</a>
+			</li>
+			{{/if}}
+			<!-- If user role as teacher than can manage students and team-->
+			{{#ifeq user.role 'teacher' }}
+				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Student Management">
+					<a class="nav-link" href="/myStudent">
+						<i class="fa fa-fw fa-users"></i>
+						<span class="nav-link-text">Student Management</span>
+					</a>
+				</li>
+				<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+					<a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+						<i class="fa fa-fw fa-wrench"></i>
+						<span class="nav-link-text">Manage Projects</span>
+					</a>
+					<ul class="sidenav-second-level collapse" id="collapseComponents">
+						<li>
+							<a class="nav-link" href="/project">
+								<i class="fa fa-fw fa-pencil"></i>
+								<span class="nav-link-text">Create Project</span>
+							</a>
+						</li>
+						<li>
+							<a class="nav-link" href="/projectList">
+								<i class="fa fa-fw fa-list-ul"></i>
+								<span class="nav-link-text">Ongoing Projects</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+			{{/ifeq}}
+			<!-- END of If user role as teacher than can manage students and team-->
+			
+			<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Investigation Process">
+				<a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion">
+					<i class="fa fa-fw fa-wpexplorer"></i>
+					<span class="nav-link-text">Investigation Process</span>
+				</a>
+				<ul class="sidenav-second-level collapse" id="collapseMulti">
+					<li>
+						<a href="/taskPlan"><i class="fa fa-fw fa-tasks"></i>Task Planning</a>
+					</li>
+					<li>
+						<a href="/collectResource"><i class="fa fa-fw fa-sitemap"></i>Collect Resources</a>
+					</li>
+					<li>
+						<a href="/learningAgenda"><i class="fa fa-fw fa-question-circle"></i>Learning Agendas</a>
+					</li>
+				</ul>
 			</li>
 			<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Idea Generation">
 				<a class="nav-link" href="/idea">
-					<i class="fa fa-fw fa-area-chart"></i>
+					<i class="fa fa-fw fa-lightbulb-o"></i>
 					<span class="nav-link-text">Idea Generation</span>
 				</a>
 			</li>
-			<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Student Management">
-				<a class="nav-link" href="/myStudent">
-					<i class="fa fa-fw fa-users"></i>
-					<span class="nav-link-text">Student Management</span>
+			<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Documentation">
+				<a class="nav-link" href="/documentation">
+					<i class="fa fa-fw fa-book"></i>
+					<span class="nav-link-text">Documentation</span>
 				</a>
 			</li>
-			<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Your Profile">
+			<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Artefact Presentation">
+				<a class="nav-link" href="/presentation">
+					<i class="fa fa-fw fa-area-chart"></i>
+					<span class="nav-link-text">Artefact Presentation</span>
+				</a>
+			</li>
+			<li class="nav-item" data-toggle="tooltip" data-placement="right" title="portfolio">
 				<a class="nav-link" href="/myProfile">
 					<i class="fa fa-fw fa-cog"></i>
-					<span class="nav-link-text">Your Profile</span>
+					<span class="nav-link-text">My Portfolio</span>
 				</a>
 			</li>
 			<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Showcases">
 				<a class="nav-link" href="/showcase">
 					<i class="fa fa-fw fa-newspaper-o"></i>
 					<span class="nav-link-text">Showcases</span>
-				</a>
-			</li>
-			<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Generate Project">
-				<a class="nav-link" href="/project">
-					<i class="fa fa-fw fa-list-ul"></i>
-					<span class="nav-link-text">Generate Project</span>
-				</a>
-			</li>
-			<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ongoing Projects">
-				<a class="nav-link" href="/pblOn">
-					<i class="fa fa-fw fa-line-chart"></i>
-					<span class="nav-link-text">Ongoing Projects</span>
 				</a>
 			</li>
 		</ul>
@@ -83,15 +135,30 @@
 			</li>
 		</ul>
 		<ul class="navbar-nav ml-auto">
+			<li class="nav-item" data-toggle="tooltip" data-placement="right" title="do not disturb mode as flow-experience support">
+				{{#ifeq user.mute 'off' }}
+				<a class="nav-link" href="javascript:;" id="muteLink" onclick="muteMe()">
+					<i class="fa fa-fw fa-bell-o"></i>
+					<span class="nav-link-text">Activate Mute</span>
+				</a>
+				{{/ifeq}}
+				{{#ifeq user.mute 'on' }}
+				<a class="nav-link" href="javascript:;" id="unmuteLink" onclick="unmuteMe()">
+					<i class="fa fa-fw fa-bell-slash-o"></i>
+					<span class="nav-link-text">Activate Unmute</span>
+				</a>
+				{{/ifeq}}
+			</li>
+			{{#ifeq user.mute 'off' }}
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="fa fa-fw fa-envelope"></i>
 					<span class="d-lg-none">Messages
-              <span class="badge badge-pill badge-primary">12 New</span>
-            </span>
+						<span class="badge badge-pill badge-primary">12 New</span>
+					</span>
 					<span class="indicator text-primary d-none d-lg-block">
-              <i class="fa fa-fw fa-circle"></i>
-            </span>
+						<i class="fa fa-fw fa-circle"></i>
+					</span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="messagesDropdown">
 					<h6 class="dropdown-header">New Messages:</h6>
@@ -99,19 +166,7 @@
 					<a class="dropdown-item" href="#">
 						<strong>David Miller</strong>
 						<span class="small float-right text-muted">11:21 AM</span>
-						<div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome! These messages clip off when they reach the end of the box so they don't overflow over to the sides!</div>
-					</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">
-						<strong>Jane Smith</strong>
-						<span class="small float-right text-muted">11:21 AM</span>
-						<div class="dropdown-message small">I was wondering if you could meet for an appointment at 3:00 instead of 4:00. Thanks!</div>
-					</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">
-						<strong>John Doe</strong>
-						<span class="small float-right text-muted">11:21 AM</span>
-						<div class="dropdown-message small">I've sent the final files over to you for review. When you're able to sign off of them let me know and we can discuss distribution.</div>
+						<div class="dropdown-message small">Hey there! This new version of PBL software!</div>
 					</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item small" href="#">View all messages</a>
@@ -121,45 +176,43 @@
 				<a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="fa fa-fw fa-bell"></i>
 					<span class="d-lg-none">Alerts
-              <span class="badge badge-pill badge-warning">6 New</span>
-            </span>
+						<span class="badge badge-pill badge-warning">6 New</span>
+					</span>
 					<span class="indicator text-warning d-none d-lg-block">
-              <i class="fa fa-fw fa-circle"></i>
-            </span>
+						<i class="fa fa-fw fa-circle"></i>
+					</span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="alertsDropdown">
 					<h6 class="dropdown-header">New Alerts:</h6>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">
-              <span class="text-success">
-                <strong>
-                  <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
-              </span>
-						<span class="small float-right text-muted">11:21 AM</span>
-						<div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
-					</a>
+					<div id="onProjectGenerate"></div>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="#">
-              <span class="text-danger">
-                <strong>
-                  <i class="fa fa-long-arrow-down fa-fw"></i>Status Update</strong>
-              </span>
+						<span class="text-danger">
+							<strong>
+								<i class="fa fa-long-arrow-down fa-fw"></i>Waiting for Review
+							</strong>
+						</span>
 						<span class="small float-right text-muted">11:21 AM</span>
-						<div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
-					</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">
-              <span class="text-success">
-                <strong>
-                  <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
-              </span>
-						<span class="small float-right text-muted">11:21 AM</span>
-						<div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+						<div class="dropdown-message small">Project: ePBL platform is waiting for your review. Please give a feedback.</div>
 					</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item small" href="#">View all alerts</a>
 				</div>
 			</li>
+			{{/ifeq}}
+			{{#ifeq user.mute 'on' }}
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle mr-lg-2 disabled" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fa fa-fw fa-envelope"></i>
+				</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle mr-lg-2 disabled" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fa fa-fw fa-bell-slash"></i>
+				</a>
+			</li>
+			{{/ifeq}}
 			<li class="nav-item">
 				<form class="form-inline my-2 my-lg-0 mr-lg-2">
 					<div class="input-group">
@@ -195,8 +248,7 @@
 					{{/if}}
 					{{#if messages.success}}
 						<div class="alert alert-success">
-							Successfully created.....
-							{{!--{flashMessages messages.success}--}}
+							{{{flashMessages messages.success}}}
 						</div>
 					{{/if}}
 					{{#if messages.warning}}
@@ -259,18 +311,46 @@
 	<!-- Core plugin JavaScript-->
 	<script src="/bootstrap-admin-theme/vendor/jquery-easing/jquery.easing.min.js"></script>
 	<!-- Page level plugin JavaScript-->
-	<!-- <script src="/bootstrap-admin-theme/vendor/chart.js/Chart.min.js"></script> -->
 	<script src="/bootstrap-admin-theme/vendor/datatables/jquery.dataTables.js"></script>
 	<script src="/bootstrap-admin-theme/vendor/datatables/dataTables.bootstrap4.js"></script>
 	<!-- Custom scripts for all pages-->
 	<script src="/bootstrap-admin-theme/js/sb-admin.min.js"></script>
 	<!-- Custom scripts for this page-->
 	<script src="/bootstrap-admin-theme/js/sb-admin-datatables.min.js"></script>
-	<!-- <script src="/bootstrap-admin-theme/js/sb-admin-charts.min.js"></script>-->
+	<!-- chartjs cdn link-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+	<script src="/chart-2.4.0/mychart.js"></script>
 	<!-- sir trevor js files-->
 	<script src="/sir-trevor-0.6.6/sir-trevor.js"></script>
 	<script src="/js/initSirTrevor.js"></script>
-	<!-- file upload api js file-->
+	<!-- selectize js file -->
+	<script src="/selectize/js/selectize.js"></script>
+	<script>
+		tinymce.init({ selector:'textarea' });
+	</script>
+	<!-- socket.io cdn link -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+	<script src="/chat-notification/chat-notification.js"></script>
+	<!-- tinymce file-->
+	<script src="/tinymce/tinymce.min.js"></script>
+	<script>
+		tinymce.init({
+			selector: '#documentContent',
+			height : 200,
+		});
+	</script>
+	<!-- Load Facebook SDK for JavaScript -->
+	<div id="fb-root"></div>
+	<script>
+		(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1";
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	<!-- main js file-->
 	<script src="/js/main.js"></script>
 	{{{isPblEditorJS user}}}
 </div>

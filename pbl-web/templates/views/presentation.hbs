@@ -1,0 +1,184 @@
+<h5 style="text-align: center">
+	<i class="fa fa-fw fa-area-chart"></i> Project Artefact Presentation
+</h5>
+<div class="form-group row">
+	<div class="col-sm-5">
+		<a href="#" class="btn btn-success"><i class="fa fa-fw fa-file-pdf-o"></i>Export as Pdf</a>
+		<a href="/presentation/addArtefact" class="btn btn-primary"><i class="fa fa-fw fa-plus-square"></i>Add Artefact Files</a>
+	</div>
+</div>
+<hr>
+<div class="container">
+	<h6><i class="fa fa-fw fa-pencil"></i>Project Basic Data: Driving Question:</h6>
+	<hr>
+	<div class="form-group row">
+		<label for="projecTitle" class="col-sm-2 col-form-label">Project Title: </label>
+		<div class="col-sm-10">
+			<input class="form-control" type="text" placeholder="{{ data.project.title }}" readonly>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="ideaDescription" class="col-sm-2 col-form-label">Description:</label>
+		<div class="col-sm-10">
+			<p class="form-control-static">{{ data.project.description }}</p>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="learningGoals" class="col-sm-2 col-form-label">Learning Goals:</label>
+		<div class="col-sm-10">
+			<ul>
+				{{#if data.allLearningGoals}}
+					{{#each data.allLearningGoals}}
+						<li>{{goal}}</li>
+					{{/each}}
+				{{/if}}
+			</ul>
+		</div>
+	</div>
+	<div class="form-group row">
+		<label for="participants" class="col-sm-2 col-form-label">Participants:</label>
+		<ol>
+			{{#each data.participants}}
+				<li>{{email}}</li>
+			{{/each}}
+		</ol>
+	</div>
+	<div class="form-group row">
+		<label for="deadline" class="col-sm-2 col-form-label">Deadline:</label>
+		<div class="form-inline col-sm-5">
+			<label class="form-control">
+				<b>Start-Date:</b> {{data.project.startDate}}
+			</label>
+		</div>
+		<div class="form-inline col-sm-5">
+			<label class="form-control">
+				<b>End-Date:</b> {{data.project.endDate}}
+			</label>
+		</div>
+	</div>
+</div>
+<hr>
+{{#if data.tasks}}
+<div class="container">
+	<h6><i class="fa fa-fw fa-tasks"></i>Project Tasks:</h6>
+	<hr>
+	<ul>
+    {{#each data.tasks}}
+		<li>
+			Task number {{inc @index}}: <a href="/taskPlan/{{_id}}/detailTaskPlan">{{title}}</a> ( Created By: {{ createdBy.name.first }} {{ createdBy.name.last }} )
+		</li>
+	{{/each}}
+	</ul>
+</div> 
+{{/if}}
+<hr>
+{{#if data.presentationFiles}}
+	<h6 style="text-align: center"> Artefacts (Image, Video, Outcome List)</h6></label>
+	{{#each data.presentationFiles}}
+		<div class="form-group row">
+			<div class="col-sm-12">
+				<textarea name="resources_upload" class="form-control sir-trevor" id="file_upload">{{resources_upload}}</textarea>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">Files:<i class="fa fa-fw fa-download"></i></label>
+			<div class="col-sm-10">
+				<ul>
+					<li><a href="{{uploaded_file_path}}">File Name: {{file_name}}</a></li>
+				</ul>
+			</div>
+		</div>
+	{{/each}}
+{{/if}}
+<hr>
+<!-- project feedback section by teacher's final feedback on the project and students individual feedback -->
+<h5 style="text-align: center">
+	<i class="fa fa-fw fa-comment"></i>Project FeedBacks:
+</h5>
+<!-- Add feedback button as Modal -->
+<div class="form-group">
+	<div class="form-row">
+		<div class="col-md-6">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addFeedbackModal">
+				<i class="fa fa-fw fa-commenting"></i>Add FeedBacks
+			</button>
+		</div>
+	</div>
+</div>
+<!-- Feedback data if already have some-->
+<div class="form-group">
+    {{#if data.feedback}}
+		{{#each data.feedback}}
+		{{#ifeq createdBy.role 'teacher' }}
+		<div class="form-row">
+			<label for="feedbackTeacher" class="col-sm-2 col-form-label">
+				FeedBack By Teacher:
+				{{ createdBy.name.first }} {{ createdBy.name.last }}
+			</label>
+			<div class="col-sm-10">
+				<textarea name="feedback_content" class="form-control" rows="3" readonly>{{feedback_content}}</textarea>
+			</div>
+		</div>
+		{{/ifeq}}
+		{{#ifeq createdBy.role 'student' }}
+		<div class="form-row">
+			<label for="feedbackStudent" class="col-sm-12 col-form-label">
+				<i class="fa fa-fw fa-comments"></i>FeedBack By Students
+			</label>
+		</div>
+		<div class="form-row">
+			<label for="feedbackContent" class="col-sm-2 col-form-label">
+				By: {{ createdBy.name.first }} {{ createdBy.name.last }}
+			</label>
+			<div class="col-sm-10">
+				<textarea name="feedback_content" class="form-control" rows="3" readonly>{{feedback_content}}</textarea>
+			</div>
+		</div>
+		{{/ifeq}}
+		{{/each}}
+	{{/if}}
+</div>
+<!-- Feedback data ends-->
+
+<!-- Modal for add feedback start -->
+<div class="modal fade" id="addFeedbackModal" tabindex="-1" role="dialog" aria-labelledby="addFeedbackModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="addFeedbackModalLabel">Add Your Feedback on the Project Outcome</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<!-- add feedback form start -->
+				<form method="post" action="/presentation/addFeedback">
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-12">
+								{{#ifeq user.role 'student' }}
+										<label>Your Feedback as Student:</label>
+										<textarea name="feedback_content" class="form-control" rows="3" placeholder="Write about thought....what did you learn? how was this project? Give a short summary."></textarea>
+								{{/ifeq}}
+                                {{#ifeq user.role 'teacher' }}
+									<label>Your Feedback as Teacher:</label>
+									<textarea name="feedback_content" class="form-control" rows="3" placeholder="As a Teacher give some feedback on the project output/artefact made by students. Give your review so they could change it and represent again."></textarea>
+								{{/ifeq}}
+							</div>
+						</div>
+					</div>
+					<div class="form-actions">
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Add feedback</button>
+						</div>
+					</div>
+				</form>
+				<!-- add feedback form end -->
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal for add feedback Ends -->
+
+

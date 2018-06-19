@@ -1,17 +1,56 @@
+<!-- Add showcase button as Modal -->
+<!-- Button trigger modal -->
+<div class="form-group">
+	<div class="form-row">
+		<div class="col-md-6">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addShowcaseModal">
+				<i class="fa fa-newspaper-o"></i> Add new Showcase
+			</button>
+		</div>
+	</div>
+</div>
 <!-- Card Columns Example Social Feed-->
-<div class="mb-0 mt-4">
-	<i class="fa fa-newspaper-o"></i> Showcases</div>
-<hr class="mt-2">
 <div class="card-columns">
+	<!-- from DB -->
+	<div class="card mb-3">
+		{{#if data.showcase}}
+			{{#each data.showcase}}
+			<a href="#">
+				<img class="card-img-top img-fluid w-100" src="{{uploaded_file_path}}" alt="showcaseImage">
+			</a>
+			<div class="card-body">
+				<h6 class="card-title mb-1"><a href="#">{{createdBy.name.firstname}} {{createdBy.name.lastname}}</a></h6>
+				<p class="card-text small">{{title}}
+				</p>
+			</div>
+		    <hr class="my-0">
+			<div class="card-body py-2 small">
+				<a class="mr-3 d-inline-block" href="#">
+					<i class="fa fa-fw fa-thumbs-up"></i>Like
+				</a>
+				<a class="mr-3 d-inline-block" href="#">
+					<i class="fa fa-fw fa-comment"></i>Comment
+				</a>
+				<a target="_blank" class="d-inline-block" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:3000/showcase/detailShowcase/{{_id}}" class="fb-xfbml-parse-ignore">
+					<i class="fa fa-fw fa-share"></i>Share
+				</a>
+				<a class="d-inline-block" href="/showcase/detailShowcase/{{_id}}">
+					  <i class="fa fa-fw fa-arrow-down"></i>Details
+				</a>
+			</div>
+			<div class="card-footer small text-muted">Posted {{createdAt}} ago</div>
+			{{/each}}
+		{{/if}}
+	</div>
+	<!-- from DB -->
 	<!-- Example Social Card-->
 	<div class="card mb-3">
 		<a href="#">
-			<img class="card-img-top img-fluid w-100" src="/images/showcase/arduino.jpg" alt="">
+			<img class="card-img-top img-fluid w-100" src="/images/showcase/project01.jpg" alt="">
 		</a>
 		<div class="card-body">
-			<h6 class="card-title mb-1"><a href="#">David Miller</a></h6>
-			<p class="card-text small">These waves are looking pretty good today!
-				<a href="#">#surfsup</a>
+			<h6 class="card-title mb-1"><a href="#">Sven Manske</a></h6>
+			<p class="card-text small">K-12 School children from duisburg successfully done their first Project on lego robot!
 			</p>
 		</div>
 		<hr class="my-0">
@@ -22,41 +61,6 @@
 				<i class="fa fa-fw fa-comment"></i>Comment</a>
 			<a class="d-inline-block" href="#">
 				<i class="fa fa-fw fa-share"></i>Share</a>
-		</div>
-		<hr class="my-0">
-		<div class="card-body small bg-faded">
-			<div class="media">
-				<img class="d-flex mr-3" src="http://placehold.it/45x45" alt="">
-				<div class="media-body">
-					<h6 class="mt-0 mb-1"><a href="#">John Smith</a></h6>Very nice! I wish I was there! That looks amazing!
-					<ul class="list-inline mb-0">
-						<li class="list-inline-item">
-							<a href="#">Like</a>
-						</li>
-						<li class="list-inline-item">·</li>
-						<li class="list-inline-item">
-							<a href="#">Reply</a>
-						</li>
-					</ul>
-					<div class="media mt-3">
-						<a class="d-flex pr-3" href="#">
-							<img src="http://placehold.it/45x45" alt="">
-						</a>
-						<div class="media-body">
-							<h6 class="mt-0 mb-1"><a href="#">David Miller</a></h6>Next time for sure!
-							<ul class="list-inline mb-0">
-								<li class="list-inline-item">
-									<a href="#">Like</a>
-								</li>
-								<li class="list-inline-item">·</li>
-								<li class="list-inline-item">
-									<a href="#">Reply</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 		<div class="card-footer small text-muted">Posted 32 mins ago</div>
 	</div>
@@ -67,8 +71,7 @@
 		</a>
 		<div class="card-body">
 			<h6 class="card-title mb-1"><a href="#">John Smith</a></h6>
-			<p class="card-text small">Another day at the office...
-				<a href="#">#workinghardorhardlyworking</a>
+			<p class="card-text small">Finding web platform based on Project based learnings (PBL)
 			</p>
 		</div>
 		<hr class="my-0">
@@ -85,7 +88,7 @@
 			<div class="media">
 				<img class="d-flex mr-3" src="http://placehold.it/45x45" alt="">
 				<div class="media-body">
-					<h6 class="mt-0 mb-1"><a href="#">Jessy Lucas</a></h6>Where did you get that camera?! I want one!
+					<h6 class="mt-0 mb-1"><a href="#">Jessy Lucas</a></h6>Did you tried ePBL system?
 					<ul class="list-inline mb-0">
 						<li class="list-inline-item">
 							<a href="#">Like</a>
@@ -103,14 +106,12 @@
 	<!-- Example Social Card-->
 	<div class="card mb-3">
 		<a href="#">
-			<img class="card-img-top img-fluid w-100" src="https://unsplash.it/700/450?image=281" alt="">
+			<img class="card-img-top img-fluid w-100" src="/images/showcase/modelpbl.png" alt="">
 		</a>
 		<div class="card-body">
-			<h6 class="card-title mb-1"><a href="#">Jeffery Wellings</a></h6>
-			<p class="card-text small">Nice shot from the skate park!
-				<a href="#">#kickflip</a>
-				<a href="#">#holdmybeer</a>
-				<a href="#">#igotthis</a>
+			<h6 class="card-title mb-1"><a href="#">MD Ariful islam</a></h6>
+			<p class="card-text small">New Model for web PBL system is ready to implement!
+				<a href="#">#ePBL</a>
 			</p>
 		</div>
 		<hr class="my-0">
@@ -127,18 +128,11 @@
 	<!-- Example Social Card-->
 	<div class="card mb-3">
 		<a href="#">
-			<img class="card-img-top img-fluid w-100" src="https://unsplash.it/700/450?image=185" alt="">
+			<img class="card-img-top img-fluid w-100" src="/images/showcase/projectmumbai.jpg" alt="">
 		</a>
 		<div class="card-body">
 			<h6 class="card-title mb-1"><a href="#">David Miller</a></h6>
-			<p class="card-text small">It's hot, and I might be lost...
-				<a href="#">#desert</a>
-				<a href="#">#water</a>
-				<a href="#">#anyonehavesomewater</a>
-				<a href="#">#noreally</a>
-				<a href="#">#thirsty</a>
-				<a href="#">#dehydration</a>
-			</p>
+			<p class="card-text small">First time in History, Indian girl from chennai contribute on a Project based learning tasks...</p>
 		</div>
 		<hr class="my-0">
 		<div class="card-body py-2 small">
@@ -154,7 +148,7 @@
 			<div class="media">
 				<img class="d-flex mr-3" src="http://placehold.it/45x45" alt="">
 				<div class="media-body">
-					<h6 class="mt-0 mb-1"><a href="#">John Smith</a></h6>The oasis is a mile that way, or is that just a mirage?
+					<h6 class="mt-0 mb-1"><a href="#">John Smith</a></h6>Which school? and where did you find that?
 					<ul class="list-inline mb-0">
 						<li class="list-inline-item">
 							<a href="#">Like</a>
@@ -170,7 +164,7 @@
 						</a>
 						<div class="media-body">
 							<h6 class="mt-0 mb-1"><a href="#">David Miller</a></h6>
-							<img class="img-fluid w-100 mb-1" src="https://unsplash.it/700/450?image=789" alt="">I'm saved, I found a cactus. How do I open this thing?
+							Chennai high school. I am supervising them now :P
 							<ul class="list-inline mb-0">
 								<li class="list-inline-item">
 									<a href="#">Like</a>
@@ -189,3 +183,62 @@
 	</div>
 </div>
 <!-- /Card Columns-->
+
+
+<!-- Modal for add showcase -->
+<div class="modal fade" id="addShowcaseModal" tabindex="-1" role="dialog" aria-labelledby="addShowcaseModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="addShowcaseModalLabel">Add New Showcase</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<!-- add showcase form start -->
+				<form method="post">
+					<input type="hidden" name="action" value="add.showcase">
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-12">
+								<label for="showcaseTitle">Showcase Title:</label>
+								<input type="text" name="title" class="form-control" placeholder="Write down title of the showcase">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-12">
+								<label for="showcaseContent">Showcase Details</label>
+								<textarea name="showcase_content" class="form-control" rows="3" placeholder="Write what is this showcase about..."></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-12">
+								<label for="showcasePicture"><i class="fa fa-fw fa-image"></i></label>
+								<input type="file" name="file_upload" id="file_upload">
+								<label for="file_name">File Name:<input type="text" name="file_name" id="file_name" /></label>
+								<input type="button" value="Upload" class="btn btn-primary" onclick="uploadMyFile()">
+								<div id="new_path"></div>
+							</div>
+							<div class="col-sm-2">
+								<ul id="file_list">
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="form-actions">
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Add</button>
+						</div>
+					</div>
+				</form>
+				<!-- add showcase form end -->
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,12 @@
+Linux and mac
+sudo mkdir -p /usr/local/bin
+ sudo curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
+ sudo chmod a+x /usr/local/bin/symfony
+
+Windows
+install symfony 3.4 in ur system
+php -r "file_put_contents('symfony', file_get_contents('https://symfony.com/installer'));"
+set envirnment if not works
+
+
+

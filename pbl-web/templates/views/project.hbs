@@ -1,12 +1,22 @@
+{{#if projectSubmitted}}
+	{{{flashMessages messages.success}}}
+{{else}}
 <form method="post" enctype="multipart/form-data">
-	<input type="hidden" name="action" value="pbl.generate">
+	<input type="hidden" name="action" value="pbl.create">
 	<div class="form-group row">
-		<label for="formTitle" class="col-sm-12 col-form-label"><b>Initial Stage: Driving Question Setup</b></label>
+		<label for="formTitle" class="col-sm-12 col-form-label">
+			<b><i class="fa fa-fw fa-pencil"></i>Initial Stage:
+				{{#if data.project}}
+					Project information
+				{{else}}
+					Driving Question Setup
+				{{/if}}</b>
+		</label>
 	</div>
 	<div class="form-group row">
 		<label for="pblTitle" class="col-sm-2 col-form-label">Project Title:</label>
 		<div class="col-sm-10">
-			<input type="text" name="title" value="{{ data.project.title }}" class="form-control" id="inputTitle" placeholder="Give a title/question/problem/challenge for your project.....">
+			<input type="text" name="title" value="{{ data.project.title }}" class="form-control" id="inputTitle" placeholder="Give a title/question/problem/challenge for your project....." required>
 		</div>
 	</div>
 	<div class="form-group row">
@@ -17,27 +27,132 @@
 	</div>
 	<div class="form-group row">
 		<label for="learningGoals" class="col-sm-2 col-form-label">Learning Goals:</label>
+			<div class="col-sm-10">
+			<input type="text" name="learningGoal" class="col-sm-8" id="inputlearningGoals" placeholder="Give List of Learning goals...">
+			<input type="button" value="Add" class="btn btn-primary col-sm-2" onclick="addLearningGoals()">
+		</div>
+		<div class="col-sm-12">
+			<ul id="learningGoalList">
+				{{#if data.allLearningGoals}}
+					{{#each data.allLearningGoals}}
+					<li>{{goal}}</li>
+					{{/each}}
+				{{/if}}
+			</ul>
+		</div>
+	</div>
+	<!--
+	<div class="form-group row">
+     {{!--#if data.project.uploaded_file_path}}
+		 <label for="pblImage" class="col-sm-2 col-form-label">Uploaded files (click to download):</label>
+		 <div class="col-sm-10">
+			 <ul>
+				 <li><a href="{{data.project.uploaded_file_path}}">{{data.project.file_name}}</a></li>
+			 </ul>
+		 </div>
+	 {{else}}
+		 <label for="pblImage" class="col-sm-2 col-form-label">Upload Files (ppt,pdf,doc etc.):</label>
+		 <div class="col-sm-8">
+			 <input type="file" name="file_upload" id="file_upload">
+			 <label for="file_name">File Name:<input type="text" name="file_name" id="file_name" /></label>
+			 <input type="button" value="Upload" class="btn btn-primary" onclick="uploadMyFile()">
+			 <div id="new_path"></div>
+			 <br>
+		 </div>
+		 <div class="col-sm-2">
+			 <ul id="file_list">
+			 </ul>
+		 </div>
+	 {{/if--}}
+	</div>
+	-->
+	<div class="form-group">
+		<label for="resources_upload" class="col-md-12"><h5 style="text-align: center">Add Rich Contents(Image, Video, Tweet, List):</h5></label>
 		<div class="col-sm-10">
-			<input type="text" name="learningGoals" value="{{ data.project.learningGoals }}" class="form-control" id="inputlearningGoals" placeholder="Give List of Learning goals...">
+			<textarea name="resources_upload" class="form-control sir-trevor">{{ data.project.resources_upload }}</textarea>
 		</div>
 	</div>
 	<div class="form-group row">
-		<label for="pblImage" class="col-sm-2 col-form-label">Add Resource:</label>
-		<div class="col-sm-8">
+		<label for="videoResource" class="col-md-2">Video Uploader:</label>
+		<div class="col-sm-10">
 			<input type="file" name="file_upload" id="file_upload">
-			<label for="file_name">File Name:<input type="text" name="file_name" id="file_name" /></label>
 			<input type="button" value="Upload" class="btn btn-primary" onclick="uploadMyFile()">
 			<div id="new_path"></div>
 			<br>
 		</div>
-		<div class="col-sm-2">
-			<ul id="file_list">
-			</ul>
+		<div style="text-align:center" class="col-sm-12" id="video_file"></div>
+		{{#if data.project.uploaded_file_path }}
+			<div style="text-align:center" class="col-sm-12">
+				<video width="800" height="600" align="center" controls>
+					<source src="{{ data.project.uploaded_file_path }}" >
+				</video>
+			</div>
+		{{/if}}
+	</div>
+	<div class="form-group row">
+		<label for="deadline" class="col-sm-2 col-form-label">Deadline:</label>
+		<div class="form-inline col-sm-5">
+			<label class="form-control">
+				Start-Date: <input class="form-control" type="date" name="startDate" value="{{ formatDate data.project.startDate}}">
+			</label>
+		</div>
+		<div class="form-inline col-sm-5">
+			<label class="form-control">
+				End-Date: <input class="form-control" type="date" name="endDate" value="{{ formatDate data.project.endDate}}">
+			</label>
 		</div>
 	</div>
 	<div class="form-group row">
 		<div class="col-sm-10">
-			<button type="submit" class="btn btn-primary">Generate Project</button>
+			{{#if data.project}}
+				<button type="submit" class="btn btn-primary form-control col-sm-5">Update Project Data</button>
+			{{else}}
+				<button type="submit" class="btn btn-primary">Create project</button>
+			{{/if}}
 		</div>
 	</div>
 </form>
+{{/if}}
+{{#if data.project}}
+<hr>
+<form method="post" enctype="multipart/form-data">
+	<input type="hidden" name="action" value="project.participants">
+	<div class="form-group row">
+		<label class="col-md-12"><h5 style="text-align: center">Participants</h5></label>
+		<div class="col-sm-12">
+			<input type="text" name="participants" class="form-control" id="participants" placeholder="Select students" required>
+		</div>
+		<div class="col-sm-12">
+			<button type="submit" class="btn btn-primary col-sm-2">Add participants</button>
+		</div>
+	</div>
+</form>
+{{#if data.participants}}
+<!-- added student list-->
+<div class="form-group">
+	<div class="form-row">
+		<div class="col-md-12">
+			<table class="table table-bordered">
+				<thead>
+				<tr>
+					<th scope="col">Added participants email:</th>
+				</tr>
+				</thead>
+				<tbody>
+				{{#each data.participants}}
+					<tr>
+						<td>
+							{{email}}
+						</td>
+					</tr>
+				{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- added student list end -->
+</div>
+<hr>
+<a href="/currentProject/{{data.project._id}}" id="projectGenerate" data-id="{{data.project._id}}" class="btn btn-success form-control col-sm-5">Generate Project</a>
+{{/if}}
+{{/if}}

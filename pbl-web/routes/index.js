@@ -27,10 +27,10 @@ var multer = require('multer');
 // var upload = multer({ dest: 'uploads/files' });
 var storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		cb(null, 'protected/uploads/files')
+		cb(null, 'protected/uploads/files');
 	},
 	filename: function (req, file, cb) {
-		cb(null, file.fieldname + '-' + Date.now())
+		cb(null, file.fieldname + '-' + Date.now());
 	},
 });
 
@@ -44,7 +44,7 @@ keystone.pre('render', middleware.flashMessages);
 // Import Route Controllers
 var routes = {
 	views: importRoutes('./views'),
-	api: importRoutes('./api'),  // import API controllers File Upload
+	api: importRoutes('./api'),  // import API controllers
 };
 
 // Setup Route Bindings
@@ -58,14 +58,64 @@ exports = module.exports = function (app) {
 	app.all('/signIn', routes.views.session.signIn);
 	app.all('/signOut', routes.views.session.signOut);
 	// Protected routes for login Users
+	// dashboard routes
 	app.get('/dashboard', middleware.requirePblUser, routes.views.dashboard);
+	// idea generation routes
 	app.all('/idea', middleware.requirePblUser, routes.views.idea);
 	app.all('/idea/:id', middleware.requirePblUser, routes.views.idea);
-	app.get('/myStudent', middleware.requirePblUser, routes.views.myStudent);
-	app.get('/myProfile', middleware.requirePblUser, routes.views.myProfile);
+	app.all('/idea/detailIdea/:id', middleware.requirePblUser, routes.views.idea.detailIdea);
+	// student management routes
+	app.all('/myStudent', middleware.requirePblUser, routes.views.myStudent);
+	// profile page routes
+	app.all('/myProfile', middleware.requirePblUser, routes.views.myProfile);
+	app.all('/myProfile/addProfile', middleware.requirePblUser, routes.views.myProfile.addProfile);
+	// project create, generate, updates and other routes
 	app.all('/project', middleware.requirePblUser, routes.views.project);
 	app.all('/project/:id', middleware.requirePblUser, routes.views.project);
-	app.get('/showcase', middleware.requirePblUser, routes.views.showcase);
+	app.get('/currentProject/:id', middleware.requirePblUser, routes.views.currentProject);
+	app.get('/projectList', middleware.requirePblUser, routes.views.projectList);
+	// task planning routes
+	app.all('/taskPlan', middleware.requirePblUser, routes.views.taskPlan);
+	app.all('/taskPlan/:id/detailTaskPlan', middleware.requirePblUser, routes.views.taskPlan.detailTaskPlan);
+	// collect resources routes
+	app.all('/collectResource', middleware.requirePblUser, routes.views.collectResource);
+	// learning agenda routes
+	app.all('/learningAgenda', middleware.requirePblUser, routes.views.learningAgenda);
+	app.all('/learningAgenda/:id/detailLearningAgenda', middleware.requirePblUser, routes.views.learningAgenda.detailLearningAgenda);
+	app.all('/learningAgenda/addLearningAgendaAnswer', middleware.requirePblUser, routes.views.learningAgenda.addLearningAgendaAnswer);
+	// documentation page routes
+	app.all('/documentation', middleware.requirePblUser, routes.views.documentation);
+	app.all('/documentation/docDetail/:id', middleware.requirePblUser, routes.views.documentation.docDetail);
+	app.all('/documentation/docCreate', middleware.requirePblUser, routes.views.documentation.docCreate);
+	// presentation page routes
+	app.all('/presentation', middleware.requirePblUser, routes.views.presentation);
+	app.all('/presentation/addArtefact', middleware.requirePblUser, routes.views.presentation.addArtefact);
+	app.all('/presentation/addFeedback', middleware.requirePblUser, routes.views.presentation.addFeedback);
+	// showcase page routes
+	app.all('/showcase', middleware.requirePblUser, routes.views.showcase);
+	app.all('/showcase/detailShowcase/:id', middleware.requirePblUser, routes.views.showcase.detailShowcase);
+
+	// my api routes
+	app.get('/api/myData/list', keystone.middleware.api, routes.api.myData.list);
+	app.all('/api/myData/:id/participants', keystone.middleware.api, routes.api.myData.participants);
+	app.all('/api/myData/addProjectId', keystone.middleware.api, routes.api.myData.addProjectId);
+	app.all('/api/myData/:id/projectGenerateNotification', keystone.middleware.api, routes.api.myData.projectGenerateNotification);
+	app.all('/api/myData/mute', keystone.middleware.api, routes.api.myData.mute);
+	app.all('/api/myData/unmute', keystone.middleware.api, routes.api.myData.unmute);
+	app.all('/api/myData/getNotificationData', keystone.middleware.api, routes.api.myData.getNotificationData);
+	app.all('/api/myData/tasksTotal', keystone.middleware.api, routes.api.myData.tasksTotal);
+	app.all('/api/myData/tasksTodo', keystone.middleware.api, routes.api.myData.tasksTodo);
+	app.all('/api/myData/tasksDoing', keystone.middleware.api, routes.api.myData.tasksDoing);
+	app.all('/api/myData/tasksDone', keystone.middleware.api, routes.api.myData.tasksDone);
+	app.all('/api/myData/collectionTotal', keystone.middleware.api, routes.api.myData.collectionTotal);
+	app.all('/api/myData/learningAgendaTotal', keystone.middleware.api, routes.api.myData.learningAgendaTotal);
+	app.all('/api/myData/documentationTotal', keystone.middleware.api, routes.api.myData.documentationTotal);
+	app.all('/api/myData/ideaTotal', keystone.middleware.api, routes.api.myData.ideaTotal);
+
+	// chat service and notifications routes
+	app.all('/chat-notification', middleware.requirePblUser, routes.views.chatme);
+	app.all('/chatme', middleware.requirePblUser, routes.views.chatme);
+
 
 	// File Upload Route
 	app.get('/api/fileupload/list', keystone.middleware.api, routes.api.fileupload.list);
@@ -74,7 +124,7 @@ exports = module.exports = function (app) {
 	app.all('/api/fileupload/create', keystone.middleware.api, routes.api.fileupload.create);
 	app.get('/api/fileupload/:id/remove', keystone.middleware.api, routes.api.fileupload.remove);
 	// upload for sir trevor image file
-	app.all('/api/fileupload/createNew', keystone.middleware.api, routes.api.fileupload.createNew);
+	app.all('/api/fileupload/newImgFile', keystone.middleware.api, routes.api.fileupload.newImgFile);
 	// File Upload Route end here
 
 	// Image upload start

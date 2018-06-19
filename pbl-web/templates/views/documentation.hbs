@@ -1,0 +1,69 @@
+<div class="form-group">
+	<div class="form-row">
+		<div class="col-md-12">
+			<a href="/documentation/docCreate"class="btn btn-primary">
+				<i class="fa fa-fw fa-book"></i> Create Documentation Page
+			</a>
+		</div>
+	</div>
+</div>
+<!-- list of documents for this project -->
+{{#if data.documents}}
+	<div class="form-group">
+		<div class="form-row">
+			<div class="col-md-12">
+				<table class="table table-bordered">
+					<caption>List of documentation pages</caption>
+					<tbody>
+					{{#each data.documents}}
+						<tr>
+							<td>
+								<b><a href="/documentation/docDetail/{{_id}}">Documentation no: {{inc @index}} </a></b>
+								, <b>Topic:</b> {{title}}
+								, <small><b>Documented By: </b><a href="#">{{createdBy.name.first}} {{createdBy.name.last}}</a></small>
+								, <small><b>Created: </b>{{date createdAt}}</small>
+							<td>
+								<a href="/documentation/docDetail/{{_id}}" class="btn btn-primary">
+									Edit
+								</a>
+								<button type="button" class="btn btn-success" disabled>Delete</button>
+							</td>
+						</tr>
+					{{/each}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{{else}}
+	{{#ifeq user.role 'student' }}
+		{{#if user.projectId }}
+			<div class="form-group">
+				<div class="form-row">
+					<h5>There is no Documentation for this project. Please start to create your documentation of this project work.</h5>
+				</div>
+			</div>
+		{{else}}
+			<div class="form-group">
+				<div class="form-row">
+					<h5>You do not have any project yet. Please enroll in a project or contact with your teacher</h5>
+				</div>
+			</div>
+		{{/if}}
+	{{/ifeq}}
+	{{#ifeq user.role 'teacher' }}
+		{{#if user.projectId }}
+			<div class="form-group">
+				<div class="form-row">
+					<h5>There is no Documentation for this project. Please start to create your documentation of this project work.</h5>
+				</div>
+			</div>
+		{{else}}
+			<div class="form-group">
+				<div class="form-row">
+					<h5>You do not have any project yet. Please create project and add your students in the project then generate it</h5>
+				</div>
+			</div>
+		{{/if}}
+	{{/ifeq}}
+{{/if}}

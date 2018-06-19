@@ -20,6 +20,9 @@ User.add({
 }, 'Permissions', {
 	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },
 	pblUser: { type: Boolean, label: 'Can access Dashboard', index: true },
+	projectId: { type: Types.Relationship, ref: 'Project' },
+	mute: { type: Types.Select, options: 'on, off', default: 'off' },
+	aboutMe: { type: Types.Textarea },
 });
 
 // Provide access to Keystone
@@ -37,6 +40,7 @@ User.schema.virtual('canAccessDashboard').get(function () {
  */
 User.relationship({ ref: 'Post', path: 'posts', refPath: 'author' });
 User.relationship({ ref: 'Project', path: 'projects', refPath: 'createdBy' });
+// User.relationship({ ref: 'TaskPlan', path: 'taskPlans', refPath: 'assignTo' });
 
 /**
  * Registration

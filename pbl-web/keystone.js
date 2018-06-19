@@ -64,4 +64,35 @@ keystone.set('nav', {
 // Start Keystone to connect to your database and initialise the web server
 
 
-keystone.start();
+// keystone.start();
+var socketio = require('socket.io');
+
+keystone.start(
+	{
+		onHttpServerCreated: function () {
+			keystone.set('io', socketio.listen(keystone.httpServer));
+			var io = keystone.get('io');
+			// Whenever someone connects this gets executed
+			io.on('connection', function (socket) {
+				// console.log('Socket message: A user connected.......');
+				// when a new project is generated
+				socket.on('alert notifications', function (data) {
+					// var arr = [data];
+					var newData = JSON.stringify(data);
+					console.log('data: ' + newData);
+					io.emit('alert notifications', newData);
+				});
+
+				// socket for chat messages
+				socket.on('chat message', function (msg) {
+					console.log('message: ' + msg);
+					io.emit('chat message', msg);
+				});
+
+				// Whenever someone disconnects this piece of code executed
+				socket.on('disconnect', function () {
+					// console.log('Socket message: A user disconnected..........');
+				});
+			});
+		},
+	});

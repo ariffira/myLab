@@ -1,0 +1,124 @@
+<div class="form-group">
+	<div class="form-row">
+		<div class="col-md-12">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">
+				<i class="fa fa-fw fa-tasks"></i> Add Task
+			</button>
+		</div>
+	</div>
+</div>
+{{#if data.tasks}}
+	<!-- task list table start -->
+	<div class="form-group">
+		<div class="form-row">
+			<div class="col-md-12">
+				<table class="table table-bordered">
+					<caption>List of Tasks</caption>
+					<tbody>
+					{{#each data.tasks}}
+						<tr>
+							<th scope="row">Task no: {{inc @index}}</th>
+							<td>
+								<a href="/taskPlan/{{_id}}/detailTaskPlan">Title: {{title}}</a><br>
+								Task Status: 
+								{{#ifeq status 'Todo'}}<span class="badge badge-primary">Todo</span>{{/ifeq}}
+								{{#ifeq status 'Doing'}}<span class="badge badge-success">Doing</span>{{/ifeq}}
+								{{#ifeq status 'Done'}}<span class="badge badge-danger">Done</span>{{/ifeq}}
+								Assigned to: {{assignTo}}
+							</td>
+							<td>
+								<a href="/taskPlan/{{_id}}/detailTaskPlan"  class="btn btn-success">Detail/Edit</a>
+								<button type="button" class="btn btn-primary" disabled>Delete</button>
+							</td>
+						</tr>
+					{{/each}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- task list table end -->
+	</div>
+{{else}}
+{{#ifeq user.role 'student' }}
+	{{#if user.projectId }}
+		<div class="form-group">
+			<div class="form-row">
+				<h5>There is no Task-plan for this project. Please create a task plan first.</h5>
+			</div>
+		</div>
+	{{else}}
+		<div class="form-group">
+			<div class="form-row">
+				<h5>You do not have any project yet. Please enroll in a project or contact with your teacher</h5>
+			</div>
+		</div>
+	{{/if}}
+{{/ifeq}}
+{{#ifeq user.role 'teacher' }}
+	{{#if user.projectId }}
+		<div class="form-group">
+			<div class="form-row">
+				<h5>There is no Task-plan for this project. Please create a task plan first.</h5>
+			</div>
+		</div>
+	{{else}}
+		<div class="form-group">
+			<div class="form-row">
+				<h5>You do not have any project yet. Please create project and add your students in the project then generate it</h5>
+			</div>
+		</div>
+	{{/if}}
+{{/ifeq}}
+{{/if}}
+<!-- Modal for add Task -->
+<div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="addTaskModalLabel">Add New Task</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<!-- add Task form start -->
+				<form method="post">
+					<input type="hidden" name="action" value="add.task">
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-12">
+								<label for="taskTitle">Task Title:</label>
+								<input type="text" name="title" class="form-control" placeholder="Write a title for the task..">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-12">
+								<label for="taskDescription">Content:</label>
+								<textarea name="description" class="form-control" rows="3" placeholder="Give details about task"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-12">
+								<label for="assignTo">AssignTo:</label>
+								<select type="assignTo" name="assignTo" class="form-control" id="select-assign-to" data-id="{{user.projectId}}">
+									<option value=" ">Assign to..</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-actions">
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Add</button>
+						</div>
+					</div>
+				</form>
+				<!-- add Task form end -->
+			</div>
+		</div>
+	</div>
+</div>

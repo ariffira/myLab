@@ -29,6 +29,21 @@ module.exports = function () {
 	};
 
 	/**
+	 *  handlebar helper for increment of loop value
+	 */
+	_helpers.inc = function (value, options) {
+		return parseInt(value) + 1;
+	};
+
+	/**
+	 *  handlebar helper for date convertion iso to date format mm/dd/yyyy
+	 */
+	_helpers.formatDate = function (date) {
+		var date = moment(date).format('YYYY-MM-DD');
+		return date;
+	};
+
+	/**
 	 * Port of Ghost helpers to support cross-theming
 	 * ==============================================
 	 *

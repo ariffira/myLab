@@ -1,0 +1,131 @@
+1) how to merge two branch:
+git fetch origin
+git checkout branch1
+
+git checkout branch2(here will be other branch merge)
+git merge --no-ff branch1(there will sometimes show conflict then fix it and then do it again)
+git remote update
+
+
+2) push one branch to another:
+git push origin termin_module:dsctermin
+
+3) problem: how to open new branch in remote and use it local?
+ans: open manually in remote branch then
+     git checkout branchfromwhich_u_want_to_open_new_branch
+     git remote update
+     git checkout -b newbranchnameas_remote_name
+     git push origin newbranchnameas_remote_name//push before pull here
+     git pull origin newbranchnameas_remote_name
+
+
+4)How to merge
+Step 1. Update the repo and checkout the branch we are going to merge
+
+
+git fetch origin
+git checkout -b arif.beta origin/arif.beta
+Step 2. Merge the branch and push the changes to GitLab
+
+git checkout dsc.beta
+git merge --no-ff arif.beta
+git push origin dsc.beta
+
+5) how to open/use remote branch in new directory
+open a directory
+git init
+git remote add origin git@www.ihrarzt24.de:cyomed/apps.git
+git fetch origin
+git pull origin branchname
+
+6)SSH key setup
+ssh-keygen -t rsa -C "$your_email"
+cat ~/.ssh/id_rsa.pub
+
+7) how to add file
+git add path/filename(specific file) or path(that only will add all files inside that path)
+git add --all(add all changes, must be sure u need all to add)
+then after add git commit -m "messages"
+
+8) Vim problem:
+press i to start entering text and save by pressing esc and :wq and enter, 
+this will commit with the message you typed. In your current state, to just come out without committing,
+ you can do :q instead of the :wq as mentioned above.
+
+9) if you do not want to commit ur changes u could stash it for later use
+git stash
+
+10) new branch from master
+git checkout -b branchname
+
+11) Add readme file
+echo " some text of project" >> README.md
+
+12) if accidentally added file then reset it as: 
+git reset HEAD <path_to_file_1> <path_to_file_2> ...
+or git reset HEAD *.cs *.js
+
+13) how to use fork
+first create a fork from original remote repo with your local by clicking fork in github
+then check : git remote -v
+out put: 
+origin  git@github.com:ariffira/AvalaDLV.git (fetch)
+origin  git@github.com:ariffira/AvalaDLV.git (push)
+add the main repo or other forked repo as:
+git remote add <remote_name> <fork_url>
+git remote -v
+git fetch <remote_name>
+git merge <remote_name>/<remote_branch_name>
+example: git merge digitallab/master 
+
+14) remove remote add
+git remote rm destination
+
+15) remove commit but file will stay in local or local changes will effect, file will remove from stage
+git rm --cached asd
+git commit -m "the file asd is gone from the repository"
+
+16) Undo commit of some file
+git reset HEAD -- file 
+
+17) merge commits into one commit 
+git rebase -i HEAD~2
+
+cancel rebase : git rebase --abort
+
+18) if you want to ignore local changes of file from git stage then could use this
+git update-index --skip-worktree [<file>...]
+if change skip work tree to previous
+git update-index --no-skip-worktree filename
+
+19) check commit history
+git log
+
+20) if directory name has space then use '\' like that 
+cd my lab/ (not work, space git will not recognize)
+cd my\ lab/ (correct form) or cd mylab(without space)
+
+21) How to modify existing, unpushed commits?
+Amending the most recent commit message: git commit --amend(open in editor) or git commit --amend -m "New commit message"
+
+22) create and add gitignore file
+touch .gitignore
+then edit what u need to ignore
+
+23)push an existing repository from the command line
+git remote add origin git@github.com:ariffira/symphart.git
+git push -u origin master
+
+24)create a new repository on the command line
+echo "# symphart" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:ariffira/symphart.git
+git push -u origin master
+
+25)
+
+
+
+
