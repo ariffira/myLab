@@ -1,0 +1,115 @@
+Front end - Angular 4
+Back end - Express js
+DB - MongoDB
+CORS(Cross-origin resource sharing) for requesting different-origin resources to each other 
+like one domain font-end can get request from another domain server backend. "cross-domain" request allow mechanism.
+Cross-Origin Resource Sharing (CORS) is a technique for relaxing the same-origin policy, allowing Javascript on a web page to consume a REST API served from a different origin.
+detail: https://spring.io/understanding/CORS
+
+Postman to check json api or restapi
+
+Condition:: We will open angular cmd shell and also express shell and mongodb shell
+
+Express backend set part:
+Step 01: Open directory for the project then 
+npm init 
+open this directory into WStorm
+add all this dependencies in package.json file
+  "dependencies": {
+    "express": "*",
+    "mongoose": "*",
+    "bcryptjs": "*",
+    "cors": "*",
+    "jsonwebtoken": "*",
+    "body-parser": "*",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+then npm install
+add start in script of package.json: "start": "node app"
+
+Step 02: create app.js file
+add al required module
+app.listen to port 3000 for express
+
+Step 03: npm install -g nodemon
+Step 04: create user.js route and add all routes then export them and use them in app.js
+Step 05: set a static folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+Step 06: connect mongoose as: mongoose.connect(); and create a config for database as config/database.js
+module.exports = {
+    database: 'mongodb://localhost:27017/meanskeletonapp',
+    secret: 'mysecret'
+}
+
+put it in mongoose.connect(config.database);
+then check connection of mongoose as: 
+mongoose.connection.on('connected', () => {
+    console.log('mongoose connected as:' + config.database);
+});
+
+Step 07: make your models and connect them to router
+
+Authentication and token part:
+Step 01: we will use passport and passport-jwt for authentication. first create a config/passport.js file
+
+Passport: purpose is to authenticate requests through an extensible set of plugins known as strategies.Use OAuth for facebook and other site.
+It has uses persistent login sessions as passport.session()
+
+Passport-jwt: A Passport strategy for authenticating with a JSON Web Token. authenticate endpoints using a JSON web token
+It is intended to be used to secure RESTful endpoints without sessions.
+
+Front end setup: Angular
+step 01: npm install -g @angular/cli 
+then create a new angular front end as: ng new angular-front
+then open angular-cli.json and change "outDir": "dist", to "outDir": "../public", in apps for output build directory
+then test as: check backend works by nodemon then inside angular-front: ng serve 
+then browse localhost:4200 where 4200 angular port
+step 02: create components folder inside app/ then: ng g component componentName
+then put ur stylesheet as bootstrap sheet inside angular-front/index.html
+import routes module as RouterModule.forRoot(appRoutes) where appRoutes is an array of object for path and components
+like : 
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent},
+  { path: 'register', component: RegisterComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'dashboard', component: DashboardComponent},
+  { path: 'profile', component: ProfileComponent},
+]
+
+Then go to and set <router-outlet></router-outlet>
+then in navbar components, use bootstrap navbar from bootstrap site to navbar html file
+use [routerLink]="['/']" instead of href='/' of <a> tag
+
+Step 03: go to register.component.ts and put input attribute and value as:
+name: String;
+email: String; ete into onInit function
+then register.component.html file make register form and putng model as:  [(ngModel)]="name" name="name" in all input 
+add submit function in form tag as: <form (submit)="onRegisterSubmit()"> and create this onRegisterSubmit function inside
+component.ts file of register
+
+Step 04: for validation create angular services as: ng g service validate/it is service name then put it also
+in app.module.ts providers as: providers: [ValidateService],
+then validate.service add validation functions and put validateService also into register.components.ts
+
+Step 05: make another service called auth as: ng g service auth inside services folder
+in auth.service add registerUser() function with an observable and url for backend
+
+Observable: 
+I like to think of Observable as a function that “throws” values. 
+It can “throw” values in synchrony or asynchrony way. With Observable it’s like, don’t call us we call you.
+You can think of an observable as an array whose items arrive asynchronously over time. 
+Observables help you manage asynchronous data, such as data coming from a backend service. 
+Observables are used within Angular itself, including Angular’s event system and its http client service. 
+To use observables, Angular uses a third-party library called Reactive Extensions (RxJS). 
+
+Observables are a proposed feature for ES 2016, the next version of JavaScript.
+
+
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+Install webpack globally:
+npm install -g webpack
+
+local installtion
+npm install --save-dev webpack
+npm install --save-dev webpack@<version>
+if version is greater than 4 then need :
+npm install webpack webpack-cli --save-dev
+
+then inside application can init npm for new package.json
+npm init
+
+compile webpack files as:
+webpack fileToCompileInWebpack bundle.js(bundle file of webpack that will be inside html)
+
+or build as :
+npx webpack
+create webpack.config.js file for complex structure and then
+npx webpack --config webpack.config.js
+
+For import a CSS file from within a JavaScript module we need style and css loader:
+npm install --save-dev style-loader css-loader
+
+for image and files loader:
+npm install --save-dev file-loader
+
+loading data by build in json format:
+import Data from './data.json'
+
+for csv and xml:
+npm install --save-dev csv-loader xml-loader
+
+for fonts:
+add them to config and link as url(..);
+
