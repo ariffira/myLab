@@ -1,0 +1,79 @@
+1. create a folder client-front(which is inside main backend folder) for react
+cd client-front
+npm i -g create-react-app //install react globally
+create-react-app .  // if u are not inside client then: create-react-app clientName/. 
+set proxy in package.json of react client-front as: "proxy": "http://localhost:5000"
+
+install concurrently in main backend server as: npm install --save concurrently //concurrently will use both front and back end server running
+for concurrently add this inside scripts:
+inside package.json //of main backend not react package
+"client-install": "npm install --prefix client-front", 
+//this will help to run project from git 
+//by installing all client dependencies as: npm run client-install
+
+"start": "node server.js",
+"server": "nodemon server.js", //backend server
+"client": "npm start --prefix client-front" //front end server
+
+//this will run both server concurrently by: npm run dev 
+"dev": "concurrently \"npm run server\" \"npm run client\"",
+
+Installing bootstrap and reactstrap for react:
+npm i bootstrap reactstrap(which will help bootstrap use as react) 
+then import bootstrap in client-front/app.js as:
+import 'bootstrap/dist/css/bootstrap.min.css';
+or:
+npm i --save reactstrap 
+npm i --save bootstrap
+then use some bootstrap components from reactstrap site and test it
+
+Redux: for storing states and data to front and and communicate to backend
+npm i redux react-redux redux-thunk 
+//react-redux to communicate react with redux and redux-thunk is a middleware for dispatch to backend
+
+how get api data react: Inside component or anything app.js use it
+componentDidMount is where the magic happens. 
+This method will be executed when the component “mounts” (is added to the DOM) for the first time. 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import axios from 'axios';
+
+class FetchDemo extends React.Component {
+  state = {
+    posts: []
+  }
+
+  componentDidMount() {
+    axios.get(`http://www.reddit.com/r/${this.props.subreddit}.json`)
+      .then(res => {
+        const posts = res.data.data.children.map(obj => obj.data);
+        this.setState({ posts });
+      });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>{`/r/${this.props.subreddit}`}</h1>
+        <ul>
+          {this.state.posts.map(post =>
+            <li key={post.id}>{post.title}</li>
+          )}
+        </ul>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <FetchDemo subreddit="reactjs"/>,
+  document.getElementById('root')
+);
+This method is only executed once during the component’s life.
+
+
+
+
+
+
+
