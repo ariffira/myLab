@@ -15,7 +15,7 @@ router.get('/list', (req, res, next) => {
 router.post('/create', (req, res) => {
     let newChat = new Chat({
         roomTitle: req.body.roomTitle,
-        userName: req.body.userName
+        createdBy: req.body.createdBy
     });
 
     Chat.addChatRoom(newChat, (err, chat) => {

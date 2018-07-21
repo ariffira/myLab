@@ -19,7 +19,7 @@ class CreateRoom extends Component {
         this.state = {
             modal: false,
             roomTitle: '',
-            userName: ''
+            createdBy: ''
         };
 
         this.toggle = this.toggle.bind(this);
@@ -54,9 +54,9 @@ class CreateRoom extends Component {
                                        value={this.state.roomTitle} onChange={e => this.setState({ roomTitle: e.target.value })}/>
                             </FormGroup>
                             <FormGroup>
-                                <Label for="inputUserName">Your Name:</Label>
-                                <Input type="text" name="userName" id="inputUserName" placeholder="Required field"
-                                       value={this.state.userName} onChange={e => this.setState({ userName: e.target.value })}/>
+                                <Label for="inputCreatedBy">Your Name:</Label>
+                                <Input type="text" name="createdBy" id="inputCreatedBy" placeholder="Required field"
+                                       value={this.state.createdBy} onChange={e => this.setState({ createdBy: e.target.value })}/>
                             </FormGroup>
                         </ModalBody>
                         <ModalFooter>
