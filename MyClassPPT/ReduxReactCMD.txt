@@ -1,0 +1,51 @@
+what is react?
+JS library for UI
+Benefits: reusable, modular and faster
+
+How do i install react? before that everyone has nodejs or yarn ?
+check: download  node -v then npm -v (win)
+sudo apt-get update
+sudo apt-get install nodejs (ubuntu 16)
+sudo apt-get install npm (ubuntu 16)
+
+yarn by npm: npm install yarn --global
+check: yarn --version
+If Npm:
+npm i -g create-react-app //install react globally
+create-react-app .  // if u are not inside client then: create-react-app clientName/. 
+If Yarn:
+yarn create react-app my-app
+
+step one:
+npm i --save redux 
+npm i --save react-redux
+npm i redux react-redux
+
+check package.json please
+
+how get api data react: Inside component or anything app.js use it
+componentDidMount is where the magic happens. 
+This method will be executed when the component “mounts” (is added to the DOM) for the first time. 
+
+using Fetch() or axios() ?
+example:
+  componentDidMount() {
+    axios.get(`http://www.reddit.com/r/${this.props.subreddit}.json`)
+      .then(res => {
+        const posts = res.data.data.children.map(obj => obj.data);
+        this.setState({ posts });
+      });
+  }
+
+Important points:
+1. Loop react: MAP example
+numbers.map((number)=>
+        <li>{number}</li> // could use key={number or id or index} inside <li key= {}>
+       );
+
+2. Check Data as JSON/OBJECT/array in render
+render:
+      {JSON.stringyfy(this.state.data)}
+
+fetch data from some api as jsonplaceholder
+
