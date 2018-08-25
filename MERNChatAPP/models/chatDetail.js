@@ -11,13 +11,12 @@ const ChatDetailSchema = mongoose.Schema({
         type: String,
         required: true
     }
-    /*
     ,
     chatId: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'Chat',
         required: true
     }
-    */
 });
 
 const ChatDetail =  module.exports = mongoose.model('ChatDetail', ChatDetailSchema);

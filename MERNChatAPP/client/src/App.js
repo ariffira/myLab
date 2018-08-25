@@ -29,6 +29,10 @@ class App extends Component {
             });
     }
 
+    sendChatId(i) {
+        return <ChatDetail chatId={i} />;
+    }
+
   render() {
     return (
       <div className="App">
@@ -39,16 +43,16 @@ class App extends Component {
           <Router>
               <ListGroup>
                   { this.state.chatLists.map(chatList =>
-                      <ListGroupItem tag="a">
-                          <Link to={`/chatDetail/${chatList._id}`}>
+                      <ListGroupItem tag="a" key={chatList._id}>
+                          <Link to={`/chatDetail`}>
                               {chatList.roomTitle}
+                              {this.sendChatId(chatList._id)}
                           </Link>
-                          <Route path={`/chatDetail/${chatList._id}`} component={ChatDetail} chatId={chatList._id} />
+                          <Route path={`/chatDetail`} component={ChatDetail}/>
                       </ListGroupItem>
                   )}
               </ListGroup>
           </Router>
-          <h3>Chat details:</h3>
       </div>
     );
   }

@@ -71,6 +71,17 @@ ReactDOM.render(
 );
 This method is only executed once during the component’s life.
 
+Important points:
+1. Loop react: MAP example
+numbers.map((number)=>
+        <li>{number}</li> // could use key={number or id or index} inside <li key= {}>
+       );
+
+2. Check Data as JSON/OBJECT/array in render
+render:
+      {JSON.stringyfy(this.state.data)}
+3. 
+
 
 
 

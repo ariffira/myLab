@@ -1,17 +1,29 @@
 {
   "name": "chatapp",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "homelinke job task using react, express, node and mongoDB",
+  "main": "app.js",
   "scripts": {
-    "start": "node ./bin/www"
+    "client-install": "npm install --prefix client-front",
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "client": "npm start --prefix client-front",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "dependencies": {
-    "body-parser": "~1.18.2",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.15.5",
-    "jade": "~1.11.0",
-    "morgan": "~1.9.0",
-    "serve-favicon": "~2.4.5"
-  }
+    "bcryptjs": "*",
+    "body-parser": "^1.18.3",
+    "concurrently": "^3.6.0",
+    "cors": "*",
+    "express": "*",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "devDependencies": {
+    "nodemon": "*"
+  },
+  "author": "MD Ariful Islam",
+  "license": "ISC"
 }
