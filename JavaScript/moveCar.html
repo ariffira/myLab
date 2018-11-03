@@ -1,0 +1,52 @@
+<!Doctype html>
+<html>
+<style>
+#road {
+  width: 1000px;
+  height: 90px;
+  position: relative;
+  background: green;
+}
+#car {
+  width: 100px;
+  height: 80px;
+  position: absolute;
+  background-color: red;
+}
+img {
+  width: 100px;
+  height: 80px;
+}
+</style>
+<body>
+
+<h2>Drive Car using JS, CSS, HTML</h2>
+
+<p>
+<button onclick="driveCar()">Drive Car</button>
+</p> 
+
+<div id="road">
+<div id="car"><img src="car.jpg"></div>
+</div>
+<p id="endPoint"></p>
+
+
+<script>
+function driveCar() {
+  let carPosition = document.getElementById("car");   
+  let initialPosition = 0;
+  let id = setInterval(pathFunction, 5); // setInterval(function, timeInMiliseconds as 1000 milisec is 1 sec)
+  function pathFunction() {
+    if (initialPosition == 900) {
+      document.getElementById("endPoint").innerHTML = "You reached at the destination Point";
+      clearInterval(id);
+    } else {
+      initialPosition++; 
+      carPosition.style.left = initialPosition + 'px'; 
+    }
+  }
+}
+</script>
+</body>
+</html>

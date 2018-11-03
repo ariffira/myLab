@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <title>My first JS code</title>
+  </head>
+<body>
+
+  <p id="textChange">
+      Make me RED. I am black Test code and if you click me i will be black!!!!
+  </p>
+
+  <button id="colorChanger" onmouseover="changeColorToRed()" onmouseout="changeColorToGreen()" onClick="alert('hi I want to say something')">Change My Color</button>
+
+  <p id="text1"></p>
+
+  <hr>Write something: <input type="text" onkeydown="isTyping()">
+  <p id="typeId"></p>
+
+<!-- <script type="text/Javascript" src="main.js"></script>-->
+<script type="text/Javascript">
+
+function isTyping() {
+  document.getElementById("typeId").innerHTML = "Typing.....";
+}
+
+function changeColorToRed() {
+  document.getElementById("colorChanger").style.color = "red";
+  document.getElementById("textChange").style.color = "red";
+}
+
+function changeColorToGreen() {
+  document.getElementById("colorChanger").style.color = "Green";
+  document.getElementById("textChange").style.color = "Green";
+}
+
+function changeColorToBlack() {
+  document.getElementById("colorChanger").style.color = "Black";
+  document.getElementById("textChange").style.color = "Black";
+  document.getElementById("text1").innerHTML = "Hi heloo gooodbye!!!!!!";
+}
+
+
+/*   //global variable
+  const firstName = "global name";
+  // define function
+  function fullName() {
+    var lastName = "Islam"; // global
+    var firstName = "MD Ariful"; //global
+    console.log(firstName + lastName);
+  }
+  fullName(); // calling function
+  function getFirstName() {
+    var firstName = "global name";
+    firstName = "local name"
+    console.log(firstName);
+  }
+  getFirstName(); */
+  var person = {
+    firstName: "Ariful",
+    lastName: "Islam",
+    age: 30,
+    iq: 1.25,
+    male: true,
+    myCountry: "Syria",
+    fullname: function() {
+      fullName = this.firstName + " " + this.lastName;
+      return fullName;
+    },
+    country: function(data1, data2) {
+      return "My Country name is:" + this.myCountry + "My friend is from:" + data1;
+    },
+
+    birthDay: function(bdDay) {
+      return bdDay;
+    },
+    addition: function(a) {
+      return a+a;
+    },
+    multiply: function(a,b,c,d,e) {
+      return a*b*c*d*e;
+    }
+  };
+  
+  console.log(person.fullname());
+  console.log(person.country("Germany")); //send data1 string
+  console.log(person.country("Germany", "Polland")); //send data1 and data2 both strings
+  console.log(person.country());// send nothing
+  console.log(person.country(100000000, "bd"));//send number and string
+
+  console.log(person.birthDay("31.12.1988"));
+
+  console.log(person.addition(19, 52, (13+5)))
+  console.log(person.multiply(1,2,3,4,5))
+  
+</script>
+</body>
+</html>

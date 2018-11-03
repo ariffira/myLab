@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JS Higher order function</h2>
+
+<script>
+     //map
+    // normal ways
+    const birthYear = [1975, 1997, 2002, 1995, 1985];
+    const ages = [];
+    for(let i = 0; i < birthYear.length; i++) {
+      let age = 2018 - birthYear[i];
+      ages.push(age);
+    }
+    console.log(ages);
+
+    //short ways
+    const ages2 = birthYear.map(year => 2018 - year);
+    console.log(ages2);
+
+    //filter
+    
+</script>
+</body>
+</html> 

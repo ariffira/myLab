@@ -1,0 +1,147 @@
+<html>
+  <head>
+    <title>JS test</title>
+    <!-- font awesome stylesheet-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!--Bootstarp css-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <h1>Java Script Exercise 06</h1>
+    <div class="container md-col-6">
+        <button class="btn btn-primary" onClick="personData()">See my Data</button>
+    </div>
+
+    <div class="container md-col-6">
+      <p id="myData"></p>
+    </div>
+    <div class="row">
+        <div class="md-col-6">
+          <label>Give first Number:</label>
+          <input type="number" name="number1" id="number1"><br>
+          <label>second Number:</label>
+          <input type="number" name="number2" id="number2">
+          <button class="btn btn-success" type="submit" onClick="addition()">+</button>
+          <button class="btn btn-success" type="submit" onClick="multiply()">*</button>
+          <button class="btn btn-success" type="submit" onClick="devide()">/</button>
+        </div>
+    
+        <div class="md-col-6">
+            <p id="result"></p>
+            <p id="resultMult"></p>
+            <p id="resultdevide"></p>
+        </div>
+    </div>
+
+
+
+
+    <!--my javascript-->
+    <script>
+     // function in normal way
+     function abc(a){
+       console.log("Hello" + a);
+     }
+     abc(10);
+     // function in short way with arrow function
+     var abc1 = a => console.log("Hello"+ a);
+     abc1(100);
+     
+     // if else condition normal way
+     if(1==1) {
+       console.log("good");
+     } else {
+       console.log("Bad");
+     }
+     // if else in short way with ternary 
+     (1==2) ? console.log("good") : console.log("Bad");
+      
+      // empty arrow function
+      const emptyArrow = () => console.log("My empty function with arrow");
+      emptyArrow();
+
+      // arrow function with 1 argument
+      const oneArg = (a) => console.log(a+a+a+a+a+a+a);
+      oneArg(12000);
+
+      // arrow function with 2 arg from input
+      const addition = () => {
+        var a = document.getElementById("number1").value;
+        a = parseInt(a);
+        console.log(a);
+        var b = document.getElementById("number2").value;
+        b = parseInt(b)
+        console.log(b);
+        var c = a + b;
+        console.log(c);
+        document.getElementById("result").innerHTML = "<h1 style='color:blue'>Result:" + c + "</h1>";
+      }
+
+      // multiply with arrow
+      const multiply = () => {
+        var a = document.getElementById("number1").value;
+        console.log(a);
+        var b = document.getElementById("number2").value;
+        console.log(b);
+        var c = a * b;
+        console.log(c);
+        document.getElementById("resultMult").innerHTML = "<h1 style='color:blue'>Result:" + c + "</h1>";
+      }
+
+      // devide with arrow
+      const devide = () => {
+        var a = document.getElementById("number1").value;
+        console.log(a);
+        var b = document.getElementById("number2").value;
+        console.log(b);
+        var c = a / b;
+        console.log(c);
+        document.getElementById("resultdevide").innerHTML = "<h1 style='color:blue'>Result:" + c + "</h1>";
+      }
+      
+      //new keyword example
+      var doner_box = new Object();
+      doner_box.prommes = "Kartofel";
+      doner_box.salats = ["gurken", "tomatoes", "Zweibel", "Zitrone"];
+      console.log(doner_box); 
+
+
+      var person = {
+        firstName: "Michal",
+        lastName: "Müller",
+        age: 30,
+        school: "Uni Duisburg",
+        favMovies: function() {
+          var listOfMovies = [
+            "Avatar",
+            "Titanic",
+            "Lulu Pulu"
+          ];
+          var text = "";
+          for(var i = 0; i<listOfMovies.length; i++){
+            text += "<ul><li>" + listOfMovies[i] + "</li></ul>";
+          }
+          return text;
+        },
+        fullName: function() {
+          return this.firstName + " " + this.lastName;
+        },
+        middleName: ""
+      };
+      console.log(person.fullName());
+
+      function personData() {
+        // alert(1)
+        document.getElementById("myData").innerHTML = "<h3>My Name is:" + person.fullName() + "<br>" + "I am " + person.age + "years old<br>" + "My Favourite movies are:" + person.favMovies() + "</h3>";
+
+      }
+    </script>
+
+    <!-- Bootstrap js files-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  </body>
+</html>

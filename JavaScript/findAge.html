@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>My JS code practice</h2>
+Birthdate: <input type="text" id="birthYear"> 
+<button onClick="findAge()">Find Age</button>
+<p id="result"></p>
+
+<script>
+    // normal ways
+    const birthYear = [1975, 1997, 2002, 1995, 1985];
+    const ages = [];
+    for(let i = 0; i < birthYear.length; i++) {
+      let age = 2018 - birthYear[i];
+      ages.push(age);
+    }
+    console.log(ages);
+
+    //short ways
+    const ages2 = birthYear.map(year => 2018 - year);
+    console.log(ages2);
+    function findAge() {
+      let birthYear = 2018 - document.getElementById('birthYear').value;
+      console.log(birthYear);
+      document.getElementById('result').innerHTML = '<h3>You are ' + birthYear + ' years Old.</h3>'
+    }
+</script>
+</body>
+</html> 

@@ -1,0 +1,127 @@
+<html>
+  <head>
+  </head>
+  <body>
+<!--     <h1>JS Conditions</h1>
+    <h3>Start with if else if conditions</h3>
+    <p id="userData"></p>
+    <hr>
+    <h2>Grade test</h2>Give your test number (0 to 100)? <input type="text" id="myGrade">
+    <br><button onClick="myResult()">Check Your grade</button>
+    <p id="resultId"></p>
+
+    <hr>
+
+    <h1>Buy a Car. Its Sale!!!!</h1>
+    <img src="car3.jpeg" width="300" height="300">
+    <button>Price: 5000 Euro</button>
+    <button onClick="buyCar()">Buy Me</button>
+    <p id="checkId"></p>
+
+    <img src="car.jpg" width="300" height="300">
+    <button>Price: 3000 Euro</button>
+    <button onClick="buyCar()">Buy Me</button>  
+    <p id="checkId2"></p> -->
+
+    Whats your Country?
+    <input type="text" id="myCountry" placeholder="bsp. de, en, sy,bd, pl">
+    <button onClick="changeLang()">
+      Show my Language
+    </button>
+    <p id="myText"></p>
+
+
+  <script>
+    function changeLang() {
+      var myCountry = document.getElementById("myCountry").value;
+      console.log(myCountry);
+
+      switch(myCountry) { 
+        case "en":
+           document.getElementById("myText").innerHTML = "Hi, I am John. I am a British and I am bad teeth." + 
+           "<br><img src ='en.jpg' width='300' height='300'>" + 
+           "<br><object width='420' height='325' data='https://www.youtube.com/embed/8DPcXHMGMBc'></object>";
+           break;
+        case "de":
+           document.getElementById("myText").innerHTML = "Hallo, Ich bin Sascha." +
+           "Ich bin ein Deutscher und ich habe keine zahne. <br><img src ='german.jpg' width='300' height='300'>";
+           break;
+        case "ir":
+           document.getElementById("myText").innerHTML = "<br><img src ='iran.jpg' width='300' height='300'>سلام ما zoya و niki هستیم ما از ایران هستیم دندان داریم";
+           break;
+        case "sy":
+           document.getElementById("myText").innerHTML = "<br><img src ='syrian.jpg' width='300' height='300'>مرحبا ، نحن سوريون. نحن أصدقاء: أحمد ومحمد وأيمن وأحمد. لدينا أسنان أيضًا";
+           break;
+        case "ru":
+           document.getElementById("myText").innerHTML = "Привет, мы русские. Мы друзья и советский союз, и нам нравятся оба. <br><img src ='russ.jpg' width='300' height='300'>";
+           break;
+        case "po":
+           document.getElementById("myText").innerHTML = "Cześć, jestem michael i lubię kobietę. <br><img src ='po.jpg' width='300' height='300'>";
+           break;
+        default:
+           document.getElementById("myText").innerHTML = "আমি আরিফ তোমার শিক্ষক <br><img src ='bd.jpg' width='300' height='300'>";
+      }
+    }
+
+
+
+
+    // car buying functin
+    var carPrice1 = 5000;
+    var carPrice2 = 3000;
+    function buyCar() {
+      // var myBalance = document.getElementById("moneyId").value;
+      var myBalance = 10000;
+/*       if (carPrice1 < myBalance) {
+        document.getElementById("checkId").innerHTML = "Congrats! You buy the car1";
+        myBalance2 = myBalance - carPrice1;
+        console.log(myBalance2);
+      } else if(carPrice2 < myBalance2){
+        document.getElementById("checkId2").innerHTML = "Congrats! You buy the car2";
+        myBalance3 = myBalance2 - carPrice2;
+        console.log(myBalance3);
+      } else {
+        document.getElementById("checkId").innerHTML = "No money!!";
+      } */
+
+
+      let letter = "B";
+
+      switch(myBalance) {
+          case carPrice1<myBalance:
+               console.log("you can buy car1");
+               break;
+          case carPrice2<myBalance:
+               console.log("you can buy car 2");
+               break;
+          default:
+               console.log("nothing");
+      }
+
+    }
+
+
+
+    function myResult() {
+      var myGrade = parseInt(document.getElementById("myGrade").value);
+      // alert(myGrade);
+      console.log(typeof myGrade);
+
+      if(myGrade >= 90 && myGrade <101) {
+        document.getElementById("resultId").innerHTML = "Congratulation!!! You got A+";
+      } else if(myGrade >= 80 && myGrade <= 89) {
+        document.getElementById("resultId").innerHTML = "Great!!! You got A which is satisfactory";
+      } else if (myGrade >=60 && myGrade < 70) {
+        document.getElementById("resultId").innerHTML = "HI, You passed the Exam. You have B+";
+      } else if(myGrade <=40 && myGrade > 0) {
+        document.getElementById("resultId").innerHTML = "Sorry you have failed the exam... :(";
+      } else if(myGrade<0) {
+        document.getElementById("resultId").innerHTML = "No Match....Negative Value";
+      } else {
+        document.getElementById("resultId").innerHTML = "What the hell! this is wrong grade";
+      }
+    }
+  </script>
+  <script src="main.js"></script>
+  </body>
+</html>
