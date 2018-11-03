@@ -5,7 +5,10 @@
 <h2>JS Higher order function</h2>
 
 <script>
-     //map
+    /**
+     * ARRAY prototype : map, filter
+     */
+    //map
     // normal ways
     const birthYear = [1975, 1997, 2002, 1995, 1985];
     const ages = [];
@@ -20,7 +23,26 @@
     console.log(ages2);
 
     //filter
+    const persons = [
+      { name: 'zoya', age: 16 },
+      { name: 'niki', age: 18 },
+      { name: 'ahmed', age: 27 },
+      { name: 'michael', age: 14 },
+      { name: 'anton', age: 24},
+    ];
+    const fullAge = persons.filter(person => person.age >= 18);
+    console.log(fullAge);
     
+    //reduce
+    const arr = [1, 2, 3, 4, 5];
+    let initialValue = 100;
+    const sum = arr.reduce(function(accumulator, currentValue) {
+      return accumulator + currentValue;
+    }, initialValue);
+    // prints 15
+    console.log(sum);
+
+
 </script>
 </body>
 </html> 
